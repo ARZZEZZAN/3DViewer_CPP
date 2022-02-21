@@ -1,102 +1,108 @@
 # 3DViewer v2.0
 
-Разработать программу 3DViewer v2.0
+Implementation of 3DViewer v2.0
+
+The russian version of the task can be found in the repository.
 
 
 ## Contents
 
 1. [Chapter I](#chapter-i) \
-    1.1. [Introduction](#introduction)
+   1.1. [Introduction](#introduction)
 2. [Chapter II](#chapter-ii) \
-    2.1. [Information](#information)
+   2.1. [Information](#information)
 3. [Chapter III](#chapter-iii) \
-    3.1. [Part 1](#part-1-3dviewer-v20) \
-    3.2. [Part 2](#part-2-дополнительно-настройки) \
-    3.3. [Part 3](#part-3-дополнительно-запись) 
+   3.1. [Part 1](#part-1-3dviewer-v20) \
+   3.2. [Part 2](#part-2-bonus-settings) \
+   3.3. [Part 3](#part-3-bonus-record)
 
 
 ## Chapter I
 
-Где-то около кофемашины в 90-ом:
+Somewhere near a coffee machine in the 90s:
 
-*-- Все просто, друг мой. Это будет мультфильм про игрушки, как короткометражка, что принесла нам "Оскар". Природная форма игрушек отлично подойдет под low-полигональные 3d-модели, которые мы способны анимировать. И скудная мимика не станет критичной, это же ведь игрушки. Да и сюжетик на примете уже имеется.. Оживим их! И построим сюжет на взаимоотношении игрушек и ребенка.*
+*-- It's simple, my friend. It will be a cartoon about toys, like the short one that brought us the Oscar. The natural shape of the toys will fit perfectly with the low-poly 3d models we're able to animate. And these are toys after all, so poor facial expressions won't be critical. There's already a plot in my mind. Let's bring them to life! The story will be based on the relationship between the toys and a child.*
 
-*- Знакомо и звучит заманчиво!*
+*- Sounds familiar and interesting!
 
-*-- Так и есть. Тебе следует как можно скорее пойти к своей команде и заняться разработкой ПО для 3d-моделирования. Если хотим сделать этот мультик, нам нужны свои собственные программные средства. То, что есть на рынке, позволит анимировать разве что деревянную пирамиду, да и ту в форме куба.*
+*-- It is. You should go to your team asap and start developing 3d modelling software. If we want to make this cartoon, we need our own software tools.
+The ones that on the market will only allow us to animate a wooden pyramid, and even then in the form of a cube.
 
-*- Знаешь, у меня похожие ощущения. Где-то даже наработки имеются.*
+*- You know, I think the same. I even have several ideas somewhere.
 
-*-- Думаю, стоит начать с главного - экрана предпросмотра. Удачи!* - с этими словами Лассетер допил свое кофе, вымыл кружку и вышел из комнаты отдыха, оставив вас наедине с размышлениями. Дверь после его ухода медленно закрылась, оставив только до боли знакомое белое свечение в щелках.
+*-- I think we should start with the most important thing - the preview screen. Good luck!* - having said these words, Lasseter finished his coffee, washed his mug and left the break room, leaving you alone with your thoughts. The door closed slowly after he had gone, leaving only the painfully familiar white glow in the cracks.
 
-*- Было бы удобно подготовить несколько стратегий отрисовки заранее..* - сказали вы задумчиво вслух, - *А также скрыть всю реализацию бизнес-логики за каким-нибудь фасадом, тогда работать с UI будет проще. И команды для обработки действий пользователя, так, так..* - необходимо было срочно обсудить поставленную задачу с командой и спроектировать архитектуру будущего приложения. Время не ждет! \
-Вы открыли дверь из комнаты отдыха, яркий свет залил ваше лицо. Ваша решимость непоколебима, планируемому мультику суждено войти в историю!
+*- It would be convenient to prepare several rendering strategies in advance...* - you said thoughtfully out loud, - *And also hide all the business logic implementation behind some kind of facade, then it will be easier to work with the UI. And commands to handle user actions, right, right...* - the sudden sound of a dial-up modem somewhere in the distance distracted you from your thoughts. You had to urgently discuss the task with the team and design the architecture of the future application. Time waits for no one! \
+You opened the door and a bright light flooded your face. Your determination is unshakable; the planned cartoon is destined to make history!
 
 ## Introduction
 
-В данном проекте Вам предстоит реализовать на языке программирования С++ в парадигме объектно-ориентированного программирования приложение для просмотра 3D моделей в каркасном виде, реализующее те же самые функции, что и разработанное ранее приложение в проекте 3DViwer v1.0.
+In this project you’ll need to implement an application for viewing 3D wireframe models in C++ in the object-oriented programming paradigm, implementing the same functions as the previously developed application in 3DViewer v1.0 project.
 
 
 ## Chapter II
 
 ## Information
 
-# Паттерны проектирования
+### Design patterns
 
-В любой человеческой деятельности, как, например, готовка еды или проведение экспериментов в области ядерной физики, существует некоторый набор устоявшихся практик, решающих базовые элементарные задачи. Они не требуют индивидуального подхода и обычно разрешаются устоявшимися за долгое время подходами, основанными на уже накопленном опыте предыдущих поворов или ядерных физиков. Например, для того чтобы испечь пирог, пусть даже и необычный, скорее всего понадобится тесто, технология приготовления которого заранее известна и обычно не требует некоторого творческого подхода. Так же и с программированием, при проектировании часто возникают элементарные задачи, с которыми до вас сталкивалось огромное число программистов, а их совокупный опыт вылился в устоявшиеся паттерны проектирования.
+Each human activity, such as cooking or nuclear physics experiments, has a set of established practices that deal with basic elementary tasks. They do not require an individual approach and are usually resolved by well-established approaches developed over time, based on the experience of previous cooks or nuclear physicists. For example, baking a pie, even an unusual one, will most likely require dough whose cooking technology is known in advance and usually does not need some creativity. It's the same with programming, when designing you often have elementary tasks that a huge number of programmers have faced before you, and their experience has developed into established design patterns.
 
-**Паттерн проектирования** описывает часто повторяющуюся при проектиронии приложений задачи и принцип ее решения, которое является универсальным для этой задачи. То есть для программиста паттерн проектирование ни что иное, как строительный блок, элементарная единица, которая реализуется в случае возникновения типовой подзадачи внутри проекта.
+**Design pattern** describes a frequently repeated application design problem and its way of solving, which is universal to that problem.
+In other words, a design pattern for a programmer is nothing but a building block, an elementary unit that is implemented when a typical subtask occurs within a project.
 
-Обычно паттерны проектирования разделяют на три группы: порождающие паттерны, структурные паттерны и паттерны поведения. Подробнее про паттерны проектирования смотрите в материалах к данному заданию. В проекте SmartCalc v2.0 вы уже сталкивались с применением уже устоявшихся практик (паттернов) при проектировании приложений (паттерн MVC). Напоминаем, что MVC в том или ином виде является одним из самых частых решений в плане структурирования кода в ходе разработки приложений с пользовательским интерфейсом. Пользовательский интерфейс и бизнес-логику с прилажещим к ней контроллером обычно разбивают на два различных глобальных домена: домен интерфейса и домен бизнес-логики.
+Design patterns are usually divided into three groups: creational, structural and behavioral patterns. See materials for more information about design patterns. \
+You have already encountered the use of established practices (patterns) in application design in the SmartCalc v2.0 project (MVC pattern). Just as a reminder, MVC in some form or another is one of the most common solutions in terms of code structuring during UI application development.
+The user interface and the business logic with its controller are usually split into two different global domains: the interface domain and the business logic domain.
 
-Домен интерфейса отвечает только за отображение интерфейса и передачу команд домену бизнес-логики. Загруженные из файла данные не должны храниться в домене интерфейса.
+The interface domain is only responsible for displaying the interface and passing commands to the business logic domain. Data loaded from a file should not be stored in the interface domain.
 
-Домен бизнес-логики отвечает за основную функциональность системы. Именно в нем хранятся загруженные данные, выполняются все операции над ними. Также в этом домене производится отрисовка.
+The business logic domain is responsible for the main functionality of the system. This is where the loaded data is stored and all the operations with it are performed. This domain is also where the rendering is done.
 
-С примерной диаграммой классов для домена бизнес-логики можете ознакомиться в материалах.
+You can see an example of a suggested class diagram for a business logic domain in materials.
 
 
 ## Chapter III
 
 ## Part 1. 3DViewer v2.0
 
-Разработать программу для визуализации каркасной модели в трехмерном пространстве.
+Develop a program to visualise the 3D wireframe models.
 
-- Программа должна быть разработана на языке C++ стандарта C++20. 
-- Код программы должен находиться в папке src 
-- Сборка программы должна быть настроена с помощью Makefile со стандартным набором целей для GNU-программ: all, install, uninstall, clean, dvi, dist, tests. Установка может вестись в любой другой произвольный каталог 
-- Программа должна быть разработана в соответствии с принципами объектно-ориентированного программирования, структурный подход запрещен
-- Должно быть обеспечено покрытие unit-тестами модулей, связанных с загрузкой моделей и афинными преобразованиями
-- В один момент времени должна быть только одна модель на экране.
-- Программа должна предоставлять возможность:
-    - Загружать каркасную модель из файла формата obj (поддержка только списка вершин и поверхностей).
-    - Перемещать модель на заданное расстояние относительно осей X, Y, Z.
-    - Поворачивать модель на заданный угол относительно осей X, Y, Z.
-    - Масштабировать модель на заданное значение.
-- В программе должен быть реализован графический пользовательский интерфейс, на базе любой GUI-библиотеки с API для C++ (Qt, SFML, GTK+, Nanogui, Nngui, etc.)
-- Графический пользовательский интерфейс должен содержать:
-    - Кнопку для выбора файла с моделью и поле для вывода его названия.
-    - Зону визуализации каркасной модели.
-    - Кнопку/кнопки и поля ввода для перемещения модели. 
-    - Кнопку/кнопки и поля ввода для поворота модели. 
-    - Кнопку/кнопки и поля ввода для масштабирования модели.  
-    - Информацию о загруженной модели - название файла, кол-во вершин и ребер.
-- Программа должна быть реализована с использованием паттерна MVC, то есть:
-    - не должно быть кода бизнес-логики в коде представлений
-    - не должно быть кода интерфейса в контроллере и в модели
-    - контроллеры должны быть тонкими
-- Необходимо использовать минимум три различных паттерна проектирования (например, фасад, стратегия и команда)
-- Классы должны быть реализованы внутри пространства имен `s21`
-- Для осуществления афинных преобразований необходимо использовать матрицы из библиотеки из предыдущего проекта s21_matrix+
+- The program must be developed in C++ language of C++20 standard
+- The program code must be located in the src folder
+- The program must be built with Makefile which contains standard set of targets for GNU-programs: all, install, uninstall, clean, dvi, dist, tests. Installation directory could be arbitrary, except the building one
+- The program should be developed according to the principles of object-oriented programming; the structured programming approach is not allowed
+- Prepare full coverage of modules related to model loading and affine transformations with unit-tests
+- There should only be one model on the screen at a time
+- The program must provide the ability to:
+    - Load a wireframe model from an obj file (vertices and surfaces list support only).
+    - Translate the model by a given distance in relation to the X, Y, Z axes.
+    - Rotate the model by a given angle in relation to the X, Y, Z axes.
+    - Scale the model by a given value.
+- GUI implementation, based on any GUI library with API for C++ (Qt, SFML, GTK+, Nanogui, Nngui, etc.)-
+- The graphical user interface must contain:
+    - A button to select the model file and a field to output its name.
+    - A visualisation area for the wireframe model.
+    - Button/buttons and input fields for translating the model.
+    - Button/buttons and input fields for rotating the model.
+    - Button/buttons and input fields for scaling the model.
+    - Information about the uploaded model - file name, number of vertices and edges.
+- The program must be implemented using the MVC pattern, and also:
+    - there should be no business code in the view code
+    - there should be no interface code in the controller and the model
+    - controllers must be thin
+- There should be at least three different design patterns (e.g. facade, strategy and command)
+- Classes must be implemented within the `s21` namespace
+- To perform affine transformations, use the matrices from the library of the previous s21_matrix+ project
 
-## Part 2. Дополнительно. Настройки
+## Part 2. Bonus. Settings
 
-- Программа должна позволять настраивать тип проекции (параллельная и центральная)
-- Программа должна позволять настраивать тип (сплошная, пунктирная), цвет и толщину ребер, способ отображения (отсутствует, круг, квадрат), цвет и размер вершин
-- Программа должна позволять выбирать цвет фона
-- Настройки должны сохраняться между перезапусками программы
+- The program should allow customizing the type of projection (parallel and central)
+- The program should allow setting up the type (solid, dashed), color and thickness of the edges, display method (none, circle, square), color and size of the vertices
+- The program should allow choosing the background color
+- Settings should be saved between program restarts
 
-## Part 3. Дополнительно. Запись
- 
-- Программа должна позволять сохранять полученные ("отрендеренные") изображения в файл в форматах bmp и jpeg
-- Программа должна позволять по специальной кнопке записывать небольшие "скринкасты" - текущие пользовательские афинные преобразования загруженного объекта в gif-анимацию (640x480, 10fps, 5s)
+## Part 3. Bonus. Record
+
+- The program must allow saving the captured (rendered) images as bmp and jpeg files.
+- The program must allow recording small screencasts - the current custom affine transformation of the loaded object into gif-animation (640x480, 10fps, 5s) by a special button

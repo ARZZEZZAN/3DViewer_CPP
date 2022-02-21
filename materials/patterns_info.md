@@ -1,41 +1,41 @@
-# Паттерны проектирования
+# Design patterns
 
-Обычно паттерны проектирования разделяют на три группы: порождающие паттерны, структурные паттерны и паттерны поведения. В действительности, различных паттернов огромное количество, ниже лишь представлены основные паттерны, устоявшиеся в сообществе паттерны, называемые паттернами от "Банды Четырех".
+Design patterns are usually divided into three groups: creational, structural and behavioral patterns. In reality, there are a huge number of different patterns and here are just the main ones that have become established in the developers’ community. They are also called the patterns of Gang of Four.
 
-**Порождающие паттерны** - отвечают за создание новых объектов. 
+**Creational patterns** are responsible for creating new objects.
 
-| Название            | Краткое описание                                                                             |
+| Name                | Brief description |
 |------------------------|----------------------------------------------------------------------------------------|
-| Одиночка (singleton)             | Гарантирует, что у класса есть только один экземпляр, и предоставляет к нему глобальную точку доступа.    |
-| Строитель (builder)             | Отделяет конструирование сложного объекта от его представления, так что в результате одного и того же процесса конструирования могут получаться разные представления.    |
-| Фабричный метод (factory method)             | Определяет интерфейс для создания объекта, но оставляет подклассам решение о том, экземпляры какого класса должны создаваться. Фабричный метод позволяет классу делегировать создание экземпляров подклассам.    |
-| Абстрактная фабрика (abstract factory)             | предоставляет интерфейс для создания семейств взаимосвязанных или взаимозависимых объектов, не специфицируя их конкретных классов.    |
-| Прототип (prototype)             | Задает виды создаваемых объектов с помощью экземпляра-прототипа и создает новые объекты путем копирования этого прототипа.    |
+| Singleton             | Ensures that the class has only one instance, and provides a global access point to it.    |
+| Builder                          | Separates the construction of a complex object from its representation, so that the same construction process can result in different representations.    |
+| Factory method                       | Provides an interface to create an object, but leaves it up to the subclasses to decide which instances of the class should be created. The factory method allows the class to delegate the creation of instances to subclasses.    |
+| Abstract factory             | provides an interface for creating families of related or dependent objects, without specifying their particular classes.    |
+| Prototype                      | Specifies the types of objects to be created using a prototype instance and creates new objects by copying this prototype.    |
 
-**Структурные паттерны** - отвечают за структуризацию классов и объектов. 
+**Structural patterns** are responsible for structuring classes and objects.
 
-| Название            | Краткое описание                                                                               |
+| Name                | Brief description |
 |------------------------|----------------------------------------------------------------------------------------|
-| Фасад (facade)             | Предоставляет унифицированный интерфейс вместо набора интерфейсов некоторой подсистемы. Фасад определяет интерфейс более высокого уровня, который упрощает использование подсистемы.    |
-| Декоратор (decorator)             | Динамически добавляет объекту новые обязанности. Является гибкой альтернативой порождению подклассов с целью расширения функциональности.    |
-| Адаптер (adapter)             | Преобразует интерфейс одного класса в другой интерфейс, на который рассчитаны клиенты. Адаптер обеспечивает совместную работу классов с несовместимыми интерфейсами, которая без него была бы невозможна.    |
-| Мост (bridge)             | Позволяет отделить абстракцию от ее реализации так, чтобы то и другое можно было изменять независимо.    |
-| Компоновщик (composite)             | Компонует объекты в древовидные структуры для представления иерархий «часть — целое». Позволяет клиентам единообразно трактовать индивидуальные и составные объекты.    |
-| Заместитель (proxy)             | Является суррогатом другого объекта и контролирует доступ к нему.    |
-| Приспособленец (flyweight)             | Применяет совместное использование для эффективной поддержки множества мелких объектов.    |
+| Facade                | Provides a unified interface rather than a set of interfaces of some subsystem. The facade defines a higher-level interface that simplifies the use of the subsystem.            |
+| Decorator             | Dynamically adds new responsibilities to an object. A flexible alternative to subclassing for extending functionality.    |
+| Adapter                | Turns an interface of one class into another interface that clients require. An adapter allows classes with incompatible interfaces to work together, which would not be possible without it.    |
+| Bridge                  | Allows separating abstraction from its implementation so that both can be changed independently.|
+| Composite         | Composes objects into tree structures to represent part-whole hierarchies. Allows clients to treat individual and composite objects uniformly. |
+| Proxy                                                  | Is a substitute for another object and controls the access to it. |
+| Flyweight                               |  Applies sharing for effective support of multiple small objects. |
 
-**Поведенческие** - отвечают за взаимодействие объектов. 
+**Behavioral patterns** are responsible for object communication.
 
-| Название            | Краткое описание                                                                               |
+| Name                | Brief description |
 |------------------------|----------------------------------------------------------------------------------------|
-| Состояние (state)             | Позволяет объекту изменять свое поведение в зависимости от внутреннего состояния. Извне создается впечатление, что изменился класс объекта.    |
-| Итератор (iterator)             | Предоставляет способ последовательного обращения ко всем элементам составного объекта без раскрытия его внутреннего представления.    |
-| Посетитель (visitor)             | Описывает операцию, выполняемую с каждым объектом из некоторой структуры. Паттерн посетитель позволяет определить новую операцию, не изменяя классы этих объектов.    |
-| Стратегия (strategy)             | Определяет семейство алгоритмов, инкапсулирует каждый из них и делает их взаимозаменяемыми. Стратегия позволяет изменять алгоритмы независимо от клиентов, которые ими пользуются.    |
-| Наблюдатель (observer)             | Определяет зависимость типа «один ко многим» между объектами таким образом, что при изменении состояния одного объекта все зависящие от него оповещаются об этом и автоматически обновляются.    |
-| Команда (command)             | Позволяет избежать привязки отправителя запроса к его получателю, предоставляя возможность обработать запрос нескольким объектам. Связывает объекты-получатели в цепочку и передает запрос по этой цепочке, пока он не будет обработан.    |
-| Цепочка обязанностей (chain of responsibility)             | Позволяет избежать привязки отправителя запроса к его получателю, предоставляя возможность обработать запрос нескольким объектам. Связывает объекты-получатели в цепочку и передает запрос по этой цепочке, пока он не будет обработан.    |
-| Посредник (mediator)             | Определяет объект, инкапсулирующий способ взаимодействия множества объектов. Посредник обеспечивает слабую связанность системы, избавляя объекты от необходимости явно ссылаться друг на друга и позволяя тем самым независимо изменять взаимодействия между ними.    |
-| Хранитель (memento)             | Не нарушая инкапсуляции, фиксирует и выносит за пределы объекта его внутреннее состояние, так чтобы позднее можно было восстановить в нем объект.    |
-| Шаблонный метод (template method)             | Шаблонный метод определяет основу алгоритма и позволяет подклассам переопределить некоторые шаги алгоритма, не изменяя его структуру в целом.    |
-| Интерпретатор (interpeter)             | Для заданного языка определяет представление его грамматики, а также интерпретатор предложений этого языка.    |
+| State                        | Allows the object to change its behavior depending on its internal state. From the outside it looks like the object's class has changed. |
+| Iterator                      | Provides a way to access the elements of an aggregate object sequentially without exposing its internal representation. |
+| Visitor                         | Describes the operation performed on each object from some structure. The visitor pattern allows you to define a new operation without changing the classes of these objects.   |
+| Strategy                           | Defines a family of algorithms, encapsulates each of them and makes them interchangeable. The strategy pattern allows you to change the algorithms independently from the clients that use them.
+| Observer                               | Defines a one-to-many dependency between objects so that when the state of one object changes, all objects that depend on it are notified and updated automatically.
+| Command                             | Encapsulates the request as an object, allowing to set parameters for processing the corresponding requests, to queue or log the requests, and to support the cancellation of operations. |
+| Chain of responsibility                | Allows you to avoid coupling the sender of a request to its recipient by letting multiple objects handle the request. Binds recipient objects into a chain and passes the request along this chain until it is processed. |
+| Mediator                            | A mediator defines an object that encapsulates the way multiple objects interact.  It provides loose coupling by keeping objects from referring to each other explicitly, and allows their interaction to be varied independently.
+| Memento                          | Without violating encapsulation, captures and saves internal state of the object externally, so that the object can be restored to this state later.
+| Template method                    | A template method defines the basis of an algorithm and allows subclasses to override some steps of the algorithm without changing the structure of the it as a whole. |
+| Interpreter                               | Defines a grammar for a given language, as well as an interpreter of the sentences of that language. |
