@@ -9,7 +9,7 @@ Design patterns are usually divided into three groups: creational, structural an
 | Singleton             | Ensures that the class has only one instance, and provides a global access point to it.    |
 | Builder                          | Separates the construction of a complex object from its representation, so that the same construction process can result in different representations.    |
 | Factory method                       | Provides an interface to create an object, but leaves it up to the subclasses to decide which instances of the class should be created. The factory method allows the class to delegate the creation of instances to subclasses.    |
-| Abstract factory             | provides an interface for creating families of related or dependent objects, without specifying their particular classes.    |
+| Abstract factory             | Provides an interface for creating families of related or dependent objects, without specifying their particular classes.    |
 | Prototype                      | Specifies the types of objects to be created using a prototype instance and creates new objects by copying this prototype.    |
 
 **Structural patterns** are responsible for structuring classes and objects.

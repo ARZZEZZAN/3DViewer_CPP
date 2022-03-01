@@ -1,5 +1,8 @@
 # 3DViewer v2.0
 
+> При старте работы над проектом просим вас постараться хронометрировать время работы над проектом.
+> По завершении работы над проектом просим вас ответить на два вопроса [в этом опросе](https://forms.gle/u5xgN2MfJUcY1soP8)
+
 Implementation of 3DViewer v2.0
 
 The russian version of the task can be found in the repository.
@@ -23,14 +26,13 @@ Somewhere near a coffee machine in the 90s:
 
 *-- It's simple, my friend. It will be a cartoon about toys, like the short one that brought us the Oscar. The natural shape of the toys will fit perfectly with the low-poly 3d models we're able to animate. And these are toys after all, so poor facial expressions won't be critical. There's already a plot in my mind. Let's bring them to life! The story will be based on the relationship between the toys and a child.*
 
-*- Sounds familiar and interesting!
+*- Sounds familiar and interesting!*
 
-*-- It is. You should go to your team asap and start developing 3d modelling software. If we want to make this cartoon, we need our own software tools.
-The ones that on the market will only allow us to animate a wooden pyramid, and even then in the form of a cube.
+*-- It is. You should go to your team asap and start developing 3d modelling software. If we want to make this cartoon, we need our own software tools. The ones that on the market will only allow us to animate a wooden pyramid, and even then in the form of a cube.*
 
-*- You know, I think the same. I even have several ideas somewhere.
+*- You know, I think the same. I even have several ideas somewhere.*
 
-*-- I think we should start with the most important thing - the preview screen. Good luck!* - having said these words, Lasseter finished his coffee, washed his mug and left the break room, leaving you alone with your thoughts. The door closed slowly after he had gone, leaving only the painfully familiar white glow in the cracks.
+*-- I think we should start with the most important thing - the preview screen. Good luck!* - having said these words, Lasseter finished his coffee, washed his mug and left the break room, leaving you alone with your thoughts. The door closed slowly after he had gone, leaving only the painfully familiar white glow in the cracks.*
 
 *- It would be convenient to prepare several rendering strategies in advance...* - you said thoughtfully out loud, - *And also hide all the business logic implementation behind some kind of facade, then it will be easier to work with the UI. And commands to handle user actions, right, right...* - the sudden sound of a dial-up modem somewhere in the distance distracted you from your thoughts. You had to urgently discuss the task with the team and design the architecture of the future application. Time waits for no one! \
 You opened the door and a bright light flooded your face. Your determination is unshakable; the planned cartoon is destined to make history!
@@ -73,7 +75,7 @@ Develop a program to visualise the 3D wireframe models.
 - The program must be built with Makefile which contains standard set of targets for GNU-programs: all, install, uninstall, clean, dvi, dist, tests. Installation directory could be arbitrary, except the building one
 - The program should be developed according to the principles of object-oriented programming; the structured programming approach is not allowed
 - Prepare full coverage of modules related to model loading and affine transformations with unit-tests
-- There should only be one model on the screen at a time
+- There should be only one model on the screen at a time
 - The program must provide the ability to:
     - Load a wireframe model from an obj file (vertices and surfaces list support only).
     - Translate the model by a given distance in relation to the X, Y, Z axes.
@@ -97,10 +99,10 @@ Develop a program to visualise the 3D wireframe models.
 
 ## Part 2. Bonus. Settings
 
-- The program should allow customizing the type of projection (parallel and central)
-- The program should allow setting up the type (solid, dashed), color and thickness of the edges, display method (none, circle, square), color and size of the vertices
-- The program should allow choosing the background color
-- Settings should be saved between program restarts
+- The program must allow customizing the type of projection (parallel and central)
+- The program must allow setting up the type (solid, dashed), color and thickness of the edges, display method (none, circle, square), color and size of the vertices
+- The program must allow choosing the background color
+- Settings must be saved between program restarts
 
 ## Part 3. Bonus. Record
 
