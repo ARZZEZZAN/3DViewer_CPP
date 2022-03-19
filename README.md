@@ -70,7 +70,7 @@ You can see an example of a suggested class diagram for a business logic domain 
 
 Develop a program to visualise the 3D wireframe models.
 
-- The program must be developed in C++ language of C++20 standard
+- The program must be developed in C++ language of C++17 standard
 - The program code must be located in the src folder
 - The program must be built with Makefile which contains standard set of targets for GNU-programs: all, install, uninstall, clean, dvi, dist, tests. Installation directory could be arbitrary, except the building one
 - The program should be developed according to the principles of object-oriented programming; the structured programming approach is not allowed
@@ -79,7 +79,7 @@ Develop a program to visualise the 3D wireframe models.
 - The program must provide the ability to:
     - Load a wireframe model from an obj file (vertices and surfaces list support only).
     - Translate the model by a given distance in relation to the X, Y, Z axes.
-    - Rotate the model by a given angle in relation to the X, Y, Z axes.
+    - Rotate the model by a given angle in relation to its X, Y, Z axes.
     - Scale the model by a given value.
 - GUI implementation, based on any GUI library with API for C++ (Qt, SFML, GTK+, Nanogui, Nngui, etc.)-
 - The graphical user interface must contain:
