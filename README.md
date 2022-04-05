@@ -22,6 +22,8 @@ The russian version of the task can be found in the repository.
 
 ## Chapter I
 
+![3dviewer2.0](misc/images/3dviewer2.0.PNG)
+
 Somewhere near a coffee machine in the 90s:
 
 *-- It's simple, my friend. It will be a cartoon about toys, like the short one that brought us the Oscar. The natural shape of the toys will fit perfectly with the low-poly 3d models we're able to animate. And these are toys after all, so poor facial expressions won't be critical. There's already a plot in my mind. Let's bring them to life! The story will be based on the relationship between the toys and a child.*
