@@ -91,6 +91,7 @@ Develop a program to visualise the 3D wireframe models.
     - Button/buttons and input fields for rotating the model.
     - Button/buttons and input fields for scaling the model.
     - Information about the uploaded model - file name, number of vertices and edges.
+- The program must correctly processes and allows user to view models with details up to 100, 1000, 10,000, 100,000, 1,000,000  vertices without freezing (a freeze is an interface inactivity of more than 0.5 seconds)
 - The program must be implemented using the MVC pattern, and also:
     - there should be no business code in the view code
     - there should be no interface code in the controller and the model
