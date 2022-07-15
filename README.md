@@ -74,6 +74,7 @@ Develop a program to visualise the 3D wireframe models.
 
 - The program must be developed in C++ language of C++17 standard
 - The program code must be located in the src folder
+- When writing code it is necessary to follow the Google style
 - The program must be built with Makefile which contains standard set of targets for GNU-programs: all, install, uninstall, clean, dvi, dist, tests. Installation directory could be arbitrary, except the building one
 - The program should be developed according to the principles of object-oriented programming; the structured programming approach is not allowed
 - Prepare full coverage of modules related to model loading and affine transformations with unit-tests
@@ -98,7 +99,7 @@ Develop a program to visualise the 3D wireframe models.
     - controllers must be thin
 - There should be at least three different design patterns (e.g. facade, strategy and command)
 - Classes must be implemented within the `s21` namespace
-- To perform affine transformations, use the matrices from the library of the previous s21_matrix+ project
+- To perform affine transformations, you can use the matrices from the library of the previous s21_matrix+ project
 
 ## Part 2. Bonus. Settings
 
