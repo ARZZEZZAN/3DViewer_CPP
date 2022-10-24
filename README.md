@@ -101,6 +101,8 @@ Develop a program to visualise the 3D wireframe models.
 - Classes must be implemented within the `s21` namespace
 - To perform affine transformations, you can use the matrices from the library of the previous s21_matrix+ project
 
+*Note:* **Don't upload heavy files (>10 mb) to git.**
+
 ## Part 2. Bonus. Settings
 
 - The program must allow customizing the type of projection (parallel and central)
