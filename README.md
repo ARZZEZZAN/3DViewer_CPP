@@ -31,7 +31,7 @@ Somewhere near a coffee machine in the 90s:
 
 *- You know, I think the same. I even have several ideas somewhere.*
 
-*-- I think we should start with the most important thing - the preview screen. Good luck!* - having said these words, Lasseter finished his coffee, washed his mug and left the break room, leaving you alone with your thoughts. The door closed slowly after he had gone, leaving only the painfully familiar white glow in the cracks.*
+*-- I think we should start with the most important thing - the preview screen. Good luck!* - having said these words, Lasseter finished his coffee, washed his mug and left the break room, leaving you alone with your thoughts. The door closed slowly after he had gone, leaving only the painfully familiar white glow in the cracks.
 
 *- It would be convenient to prepare several rendering strategies in advance...* - you said thoughtfully out loud, - *And also hide all the business logic implementation behind some kind of facade, then it will be easier to work with the UI. And commands to handle user actions, right, right...* - the sudden sound of a dial-up modem somewhere in the distance distracted you from your thoughts. You had to urgently discuss the task with the team and design the architecture of the future application. Time waits for no one! \
 You opened the door and a bright light flooded your face. Your determination is unshakable; the planned cartoon is destined to make history!
@@ -81,7 +81,9 @@ Develop a program to visualise the 3D wireframe models.
     - Translate the model by a given distance in relation to the X, Y, Z axes.
     - Rotate the model by a given angle in relation to its X, Y, Z axes.
     - Scale the model by a given value.
-- GUI implementation, based on any GUI library with API for C++ (Qt, SFML, GTK+, Nanogui, Nngui, etc.)-
+- GUI implementation, based on any GUI library with API for C++ 
+  * For Linux: GTK+, CEF, Qt, JUCE
+  * For Mac: GTK+, CEF, Qt, JUCE, SFML, Nanogui, Nngui
 - The graphical user interface must contain:
     - A button to select the model file and a field to output its name.
     - A visualisation area for the wireframe model.
@@ -112,4 +114,4 @@ Develop a program to visualise the 3D wireframe models.
 - The program must allow saving the captured (rendered) images as bmp and jpeg files.
 - The program must allow recording small screencasts - the current custom affine transformation of the loaded object into gif-animation (640x480, 10fps, 5s) by a special button
 
-💡 [Tap here](https://forms.yandex.ru/u/635a89bf84227c19f124b1b6/) **to leave your feedback on the project**. Pedago Team really tries to make your educational experience better.
+💡 [Tap here](https://forms.yandex.ru/cloud/64181b3c69387223f9a12877/) **to leave your feedback on the project**. Pedago Team really tries to make your educational experience better.
