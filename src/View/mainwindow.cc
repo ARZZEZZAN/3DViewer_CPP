@@ -313,129 +313,126 @@ s21::Controller& MainWindow::getController() { return controller_; }
 Ui::MainWindow* MainWindow::getUi() { return ui_; }
 
 void MainWindow::on_pushButton_sc_x_plus_clicked() {
-  CommandActionEvent(new ColorCommand(strategies_[kScaleStrgy]), kScalePlusX);
+  invoker_.Execute(new ColorCommand(strategies_[kScaleStrgy]), kScalePlusX);
 }
 
 void MainWindow::on_pushButton_sc_y_plus_clicked() {
-  CommandActionEvent(new ColorCommand(strategies_[kScaleStrgy]), kScalePlusY);
+  invoker_.Execute(new ColorCommand(strategies_[kScaleStrgy]), kScalePlusY);
 }
 
 void MainWindow::on_pushButton_sc_z_plus_clicked() {
-  CommandActionEvent(new ColorCommand(strategies_[kScaleStrgy]), kScalePlusZ);
+  invoker_.Execute(new ColorCommand(strategies_[kScaleStrgy]), kScalePlusZ);
 }
 
 void MainWindow::on_pushButton_sc_x_minus_clicked() {
-  CommandActionEvent(new ColorCommand(strategies_[kScaleStrgy]), kScaleMinusX);
+  invoker_.Execute(new ColorCommand(strategies_[kScaleStrgy]), kScaleMinusX);
 }
 
 void MainWindow::on_pushButton_sc_y_minus_clicked() {
-  CommandActionEvent(new ColorCommand(strategies_[kScaleStrgy]), kScaleMinusY);
+  invoker_.Execute(new ColorCommand(strategies_[kScaleStrgy]), kScaleMinusY);
 }
 
 void MainWindow::on_pushButton_sc_z_minus_clicked() {
-  CommandActionEvent(new ColorCommand(strategies_[kScaleStrgy]), kScaleMinusZ);
+  invoker_.Execute(new ColorCommand(strategies_[kScaleStrgy]), kScaleMinusZ);
 }
 void MainWindow::on_horizontalScrollBar_bgr_R_valueChanged(int value) {
   this->value_ = value;
-  CommandActionEvent(new ColorCommand(strategies_[kColorStrgy]), kBgrColorRed);
+  invoker_.Execute(new ColorCommand(strategies_[kColorStrgy]), kBgrColorRed);
 }
 
 void MainWindow::on_horizontalScrollBar_bgr_G_valueChanged(int value) {
   this->value_ = value;
-  CommandActionEvent(new ColorCommand(strategies_[kColorStrgy]),
-                     kBgrColorGreen);
+  invoker_.Execute(new ColorCommand(strategies_[kColorStrgy]), kBgrColorGreen);
 }
 
 void MainWindow::on_horizontalScrollBar_bgr_B_valueChanged(int value) {
   this->value_ = value;
-  CommandActionEvent(new ColorCommand(strategies_[kColorStrgy]), kBgrColorBlue);
+  invoker_.Execute(new ColorCommand(strategies_[kColorStrgy]), kBgrColorBlue);
 }
 
 void MainWindow::on_horizontalScrollBar_edges_R_valueChanged(int value) {
   this->value_ = value;
-  CommandActionEvent(new ColorCommand(strategies_[kColorStrgy]), kEdgColorRed);
+  invoker_.Execute(new ColorCommand(strategies_[kColorStrgy]), kEdgColorRed);
 }
 
 void MainWindow::on_horizontalScrollBar_edges_G_valueChanged(int value) {
   this->value_ = value;
-  CommandActionEvent(new ColorCommand(strategies_[kColorStrgy]),
-                     kEdgColorGreen);
+  invoker_.Execute(new ColorCommand(strategies_[kColorStrgy]), kEdgColorGreen);
 }
 
 void MainWindow::on_horizontalScrollBar_edges_B_valueChanged(int value) {
   this->value_ = value;
-  CommandActionEvent(new ColorCommand(strategies_[kColorStrgy]), kEdgColorBlue);
+  invoker_.Execute(new ColorCommand(strategies_[kColorStrgy]), kEdgColorBlue);
 }
 
 void MainWindow::on_horizontalScrollBar_vertexes_R_valueChanged(int value) {
   this->value_ = value;
-  CommandActionEvent(new ColorCommand(strategies_[kColorStrgy]), kVerColorRed);
+  invoker_.Execute(new ColorCommand(strategies_[kColorStrgy]), kVerColorRed);
 }
 
 void MainWindow::on_horizontalScrollBar_vertexes_G_valueChanged(int value) {
   this->value_ = value;
-  CommandActionEvent(new ColorCommand(strategies_[kColorStrgy]),
-                     kVerColorGreen);
+  invoker_.Execute(new ColorCommand(strategies_[kColorStrgy]), kVerColorGreen);
 }
 
 void MainWindow::on_horizontalScrollBar_vertexes_B_valueChanged(int value) {
   this->value_ = value;
-  CommandActionEvent(new ColorCommand(strategies_[kColorStrgy]), kVerColorBlue);
+  invoker_.Execute(new ColorCommand(strategies_[kColorStrgy]), kVerColorBlue);
 }
 
 void MainWindow::on_horizontalScrollBar_rot_x_valueChanged(int value) {
   this->value_ = value;
-  CommandActionEvent(new RotateCommand(strategies_[kRotateStrgy]), kRotValueX);
+  invoker_.Execute(new RotateCommand(strategies_[kRotateStrgy]), kRotValueX);
 }
 void MainWindow::on_horizontalScrollBar_rot_x_sliderReleased() {
-  CommandActionEvent(new RotateCommand(strategies_[kRotateStrgy]), kRotSliderX);
+  invoker_.Execute(new RotateCommand(strategies_[kRotateStrgy]), kRotSliderX);
 }
 
 void MainWindow::on_horizontalScrollBar_rot_y_sliderReleased() {
-  CommandActionEvent(new RotateCommand(strategies_[kRotateStrgy]), kRotSliderY);
+  invoker_.Execute(new RotateCommand(strategies_[kRotateStrgy]), kRotSliderY);
 }
 
 void MainWindow::on_horizontalScrollBar_rot_y_valueChanged(int value) {
   this->value_ = value;
-  CommandActionEvent(new RotateCommand(strategies_[kRotateStrgy]), kRotValueY);
+  invoker_.Execute(new RotateCommand(strategies_[kRotateStrgy]), kRotValueY);
 }
 
 void MainWindow::on_horizontalScrollBar_rot_z_valueChanged(int value) {
   this->value_ = value;
-  CommandActionEvent(new RotateCommand(strategies_[kRotateStrgy]), kRotValueZ);
+  invoker_.Execute(new RotateCommand(strategies_[kRotateStrgy]), kRotValueZ);
 }
 
 void MainWindow::on_horizontalScrollBar_rot_z_sliderReleased() {
-  CommandActionEvent(new RotateCommand(strategies_[kRotateStrgy]), kRotSliderZ);
+  invoker_.Execute(new RotateCommand(strategies_[kRotateStrgy]), kRotSliderZ);
 }
 
 void MainWindow::on_pushButton_mv_x_plus_clicked() {
-  CommandActionEvent(new MoveCommand(strategies_[kMoveStrgy]), kMovePlusX);
+  invoker_.Execute(new MoveCommand(strategies_[kMoveStrgy]), kMovePlusX);
 }
 
 void MainWindow::on_pushButton_mv_x_minus_clicked() {
-  CommandActionEvent(new MoveCommand(strategies_[kMoveStrgy]), kMoveMinusX);
+  invoker_.Execute(new MoveCommand(strategies_[kMoveStrgy]), kMoveMinusX);
 }
 
 void MainWindow::on_pushButton_mv_y_plus_clicked() {
-  CommandActionEvent(new MoveCommand(strategies_[kMoveStrgy]), kMovePlusY);
+  invoker_.Execute(new MoveCommand(strategies_[kMoveStrgy]), kMovePlusY);
 }
 
 void MainWindow::on_pushButton_mv_y_minus_clicked() {
-  CommandActionEvent(new MoveCommand(strategies_[kMoveStrgy]), kMoveMinusY);
+  invoker_.Execute(new MoveCommand(strategies_[kMoveStrgy]), kMoveMinusY);
 }
 
 void MainWindow::on_pushButton_mv_z_minus_clicked() {
-  CommandActionEvent(new MoveCommand(strategies_[kMoveStrgy]), kMovePlusZ);
+  invoker_.Execute(new MoveCommand(strategies_[kMoveStrgy]), kMovePlusZ);
 }
 void MainWindow::on_pushButton_mv_z_plus_clicked() {
-  CommandActionEvent(new MoveCommand(strategies_[kMoveStrgy]), kMoveMinusZ);
+  invoker_.Execute(new MoveCommand(strategies_[kMoveStrgy]), kMoveMinusZ);
 }
 
-void MainWindow::CommandActionEvent(Command* command, Operation operation) {
-  command->Execute(operation);
-  delete command;
-}
+// void MainWindow::CommandActionEvent(Command* command, Operation operation) {
+//   command->Execute(operation);
+//   delete command;
+// }
 
 int MainWindow::getValue() const { return value_; }
 

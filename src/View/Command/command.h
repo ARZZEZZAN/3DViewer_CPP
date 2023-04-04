@@ -6,7 +6,6 @@
 namespace s21 {
 class Command {
  public:
-  Command() {}
   virtual ~Command() {}
   virtual void Execute(Operation role) = 0;
 

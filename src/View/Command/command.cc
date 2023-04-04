@@ -1,6 +1,12 @@
 #include "command.h"
 
 namespace s21 {
+// class Invoker
+void Invoker::Execute(Command* command, Operation operation) {
+  command->Execute(operation);
+  delete command;
+}
+
 // class RotateCommand
 RotateCommand::RotateCommand(Strategy* strategy) { strategy_ = strategy; }
 

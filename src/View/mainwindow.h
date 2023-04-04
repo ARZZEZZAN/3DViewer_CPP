@@ -33,8 +33,8 @@ class MainWindow;
 }
 
 namespace s21 {
-class Command;
-class Strategy;
+class Command;   // TODO delete
+class Strategy;  // TODO delete
 
 QT_END_NAMESPACE
 enum Strategies { kRotateStrgy, kMoveStrgy, kColorStrgy, kScaleStrgy };
@@ -66,6 +66,11 @@ enum Operation {
   kScaleMinusY,
   kScalePlusZ,
   kScaleMinusZ,
+};
+
+class Invoker {  // TODO delete
+ public:
+  void Execute(Command *command, Operation operation);
 };
 
 class MainWindow : public QOpenGLWidget {
@@ -188,6 +193,7 @@ class MainWindow : public QOpenGLWidget {
   QPoint mPos_;
   QImage image_;
 
+  s21::Invoker invoker_;
   std::vector<Strategy *> strategies_;
   Ui::MainWindow *ui_;
   s21::Controller controller_;
