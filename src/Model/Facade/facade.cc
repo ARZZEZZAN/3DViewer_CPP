@@ -23,25 +23,23 @@ void Facade::Clear() { figure_.Clear(); }
 std::vector<double> Facade::getVertexes() const {
   return figure_.getVertexes();
 }
-std::vector<size_t> Facade::getFacets() const { return figure_.getFacets(); }
-size_t Facade::getCountVertexes() const { return figure_.getCountVertexes(); }
-size_t Facade::getCountEdges() const { return figure_.getCountEdges(); }
-size_t Facade::getCountPolygons() const { return figure_.getCountPolygons(); }
+std::vector<int> Facade::getFacets() const { return figure_.getFacets(); }
+int Facade::getCountVertexes() const { return figure_.getCountVertexes(); }
+int Facade::getCountEdges() const { return figure_.getCountEdges(); }
+int Facade::getCountPolygons() const { return figure_.getCountPolygons(); }
 double Facade::getMaxCoordinate() const { return figure_.getMaxCoordinate(); }
 
 void Facade::setVertexes(std::vector<double>& vertexes) {
   figure_.setVertexes(vertexes);
 }
-void Facade::setFacets(std::vector<size_t>& facets) {
-  figure_.setFacets(facets);
-}
-void Facade::setCountVertexes(size_t countVertexes) {
+void Facade::setFacets(std::vector<int>& facets) { figure_.setFacets(facets); }
+void Facade::setCountVertexes(int countVertexes) {
   figure_.setCountVertexes(countVertexes);
 }
-void Facade::setCountEdges(size_t countEdges) {
+void Facade::setCountEdges(int countEdges) {
   figure_.setCountEdges(countEdges);
 }
-void Facade::setCountPolygons(size_t countPolygons) {
+void Facade::setCountPolygons(int countPolygons) {
   figure_.setCountPolygons(countPolygons);
 }
 void Facade::setMaxCoordinate(double maxCoordinate) {

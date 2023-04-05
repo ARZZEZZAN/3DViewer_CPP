@@ -13,21 +13,21 @@ void Figure::Clear() {
 }
 
 std::vector<double> Figure::getVertexes() const { return vertexes_; }
-std::vector<size_t> Figure::getFacets() const { return facets_; }
-size_t Figure::getCountVertexes() const { return countVertexes_; }
-size_t Figure::getCountEdges() const { return countEdges_; }
-size_t Figure::getCountPolygons() const { return countPolygons_; }
+std::vector<int> Figure::getFacets() const { return facets_; }
+int Figure::getCountVertexes() const { return countVertexes_; }
+int Figure::getCountEdges() const { return countEdges_; }
+int Figure::getCountPolygons() const { return countPolygons_; }
 double Figure::getMaxCoordinate() const { return maxCoordinate_; }
 
 void Figure::setVertexes(std::vector<double>& vertexes) {
   vertexes_ = vertexes;
 }
-void Figure::setFacets(std::vector<size_t>& facets) { facets_ = facets; }
-void Figure::setCountVertexes(size_t countVertexes) {
+void Figure::setFacets(std::vector<int>& facets) { facets_ = facets; }
+void Figure::setCountVertexes(int countVertexes) {
   countVertexes_ = countVertexes;
 }
-void Figure::setCountEdges(size_t countEdges) { countEdges_ = countEdges; }
-void Figure::setCountPolygons(size_t countPolygons) {
+void Figure::setCountEdges(int countEdges) { countEdges_ = countEdges; }
+void Figure::setCountPolygons(int countPolygons) {
   countPolygons_ = countPolygons;
 }
 void Figure::setMaxCoordinate(double maxCoordinate) {

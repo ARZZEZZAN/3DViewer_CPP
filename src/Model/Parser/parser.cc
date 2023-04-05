@@ -41,8 +41,8 @@ void Parser::ParseVertexes(std::string& fileLine) {
     } else {
       tmp.push_back(0);
     }
-    if (vec.at(i) > figure_.getMaxCoordinate()) {
-      figure_.setMaxCoordinate(vec.at(i));
+    if (fabs(vec.at(i)) > fabs(figure_.getMaxCoordinate())) {
+      figure_.setMaxCoordinate(fabs(vec.at(i)));
     }
   }
   if (!vec.empty()) {
@@ -53,7 +53,7 @@ void Parser::ParseVertexes(std::string& fileLine) {
 
 void Parser::ParseFacets(std::string& fileLine) {
   std::vector<double> vec = ParseLine(fileLine);
-  std::vector<size_t> tmp = figure_.getFacets();
+  std::vector<int> tmp = figure_.getFacets();
 
   if (!vec.empty()) {
     tmp.push_back(vec.at(0) - 1);
@@ -67,12 +67,14 @@ void Parser::ParseFacets(std::string& fileLine) {
   figure_.setFacets(tmp);
 }
 
-size_t Parser::ParseEdges(const std::vector<size_t>& vec) {
+int Parser::ParseEdges(const std::vector<int>& vec) {
   std::set<Pairs> edges;
   for (size_t i = 1; i < vec.size(); i++) {
     if ((i + 1) % 2 == 0) {
       Pairs edge = std::make_pair(vec.at(i - 1), vec.at(i));
       edges.insert(edge);
+      Pairs edgeMirror = std::make_pair(vec.at(i), vec.at(i - 1));
+      edges.erase(edgeMirror);
     }
   }
   return edges.size();

@@ -3,7 +3,7 @@ namespace s21 {
 
 void Affine::Move(Figure &figure, double move, int coordinate) {
   std::vector<double> tmp = figure.getVertexes();
-  for (size_t i = 0; i < figure.getCountVertexes(); i++) {
+  for (size_t i = 0; i < size_t(figure.getCountVertexes()); i++) {
     tmp.at(i * 3 + coordinate) += move;
   }
   figure.setVertexes(tmp);
@@ -11,7 +11,7 @@ void Affine::Move(Figure &figure, double move, int coordinate) {
 
 void Affine::Transform(Figure &figure, double angle, int coordinate) {
   std::vector<double> tmp = figure.getVertexes();
-  for (size_t i = 0; i < figure.getCountVertexes(); i++) {
+  for (size_t i = 0; i < size_t(figure.getCountVertexes()); i++) {
     double x = tmp.at(i * 3);
     double y = tmp.at(i * 3 + 1);
     double z = tmp.at(i * 3 + 2);

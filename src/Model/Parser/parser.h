@@ -26,7 +26,7 @@ class Parser {
   bool ParseConditions(std::string& fileLine, char type);
   void ParseVertexes(std::string& fileLine);
   void ParseFacets(std::string& fileLine);
-  size_t ParseEdges(const std::vector<size_t>& vec);
+  int ParseEdges(const std::vector<int>& vec);
   std::vector<double> ParseLine(std::string& fileLine);
   void DelSpace(std::string& fileLine);
 };

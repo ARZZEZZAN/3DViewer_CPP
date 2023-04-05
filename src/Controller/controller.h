@@ -16,18 +16,11 @@ class Controller {
   void Remove();
 
   std::vector<double> getVertexes() const;
-  std::vector<size_t> getFacets() const;
-  size_t getCountVertexes() const;
-  size_t getCountEdges() const;
-  size_t getCountPolygons() const;
+  std::vector<int> getFacets() const;
+  int getCountVertexes() const;
+  int getCountEdges() const;
+  int getCountPolygons() const;
   double getMaxCoordinate() const;
-
-  void setVertexes(std::vector<double>& vertexes);
-  void setFacets(std::vector<size_t>& facets);
-  void setCountVertexes(size_t countVertexes);
-  void setCountEdges(size_t countEdges);
-  void setCountPolygons(size_t countPolygons);
-  void setMaxCoordinate(double maxCoordinate);
 
  private:
   Facade facade_;

@@ -140,10 +140,10 @@ void MainWindow::Draw() {
 
     if (ui_->radioButton_circles->isChecked()) {
       glEnable(GL_POINT_SMOOTH);
-      glDrawArrays(GL_POINTS, 0, controller_.getCountVertexes());
+      glDrawArrays(GL_POINTS, 0, int(controller_.getCountVertexes()));
       glDisable(GL_POINT_SMOOTH);
     } else if (ui_->radioButton_quads->isChecked()) {
-      glDrawArrays(GL_POINTS, 0, controller_.getCountVertexes());
+      glDrawArrays(GL_POINTS, 0, int(controller_.getCountVertexes()));
     }
 
     glDisable(GL_POINT_SMOOTH);

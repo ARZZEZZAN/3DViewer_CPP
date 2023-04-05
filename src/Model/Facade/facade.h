@@ -27,17 +27,17 @@ class Facade {
   void Clear();
 
   std::vector<double> getVertexes() const;
-  std::vector<size_t> getFacets() const;
-  size_t getCountVertexes() const;
-  size_t getCountEdges() const;
-  size_t getCountPolygons() const;
+  std::vector<int> getFacets() const;
+  int getCountVertexes() const;
+  int getCountEdges() const;
+  int getCountPolygons() const;
   double getMaxCoordinate() const;
 
   void setVertexes(std::vector<double>& vertexes);
-  void setFacets(std::vector<size_t>& facets);
-  void setCountVertexes(size_t countVertexes);
-  void setCountEdges(size_t countEdges);
-  void setCountPolygons(size_t countPolygons);
+  void setFacets(std::vector<int>& facets);
+  void setCountVertexes(int countVertexes);
+  void setCountEdges(int countEdges);
+  void setCountPolygons(int countPolygons);
   void setMaxCoordinate(double maxCoordinate);
 
  private:

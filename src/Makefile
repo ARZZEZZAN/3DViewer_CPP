@@ -29,11 +29,11 @@ dist:
 	@mv Archive_3DViewer_v2.0.tar.gz ../
 	@rm -rf Archive_3DViewer_v2.0
 
-# tests: build_tests
-# 	@./$(BUILD)$(EXE)
+tests: build_tests
+	@./$(EXE)
 
 build_tests: $(TFN)
-	@${CC} $< Model/**/*.cc ${CFLAGS} -o $(EXE)
+	@${CC} $< Model/**/*.cc Controller/*.cc ${CFLAGS} -o $(EXE)
 
 # sleep 1 - necessary for the correct opening of the application
 open:
