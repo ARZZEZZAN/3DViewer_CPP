@@ -1,5 +1,5 @@
-#ifndef CPP4_3DVIEWER_V2_0_2_SRC_VIEW_MAINWINDOW_H_
-#define CPP4_3DVIEWER_V2_0_2_SRC_VIEW_MAINWINDOW_H_
+#ifndef CPP4_3DVIEWER_V2_0_3_SRC_VIEW_MAINWINDOW_H_
+#define CPP4_3DVIEWER_V2_0_3_SRC_VIEW_MAINWINDOW_H_
 
 #ifdef __APPLE__
 /* Defined before OpenGL and GLUT includes to avoid deprecation messages */
@@ -33,36 +33,10 @@ class MainWindow;
 }
 
 namespace s21 {
-class Command;   // TODO delete
-class Strategy;  // TODO delete
+// class Command;   // TODO delete
+// class Strategy;  // TODO delete
 
 QT_END_NAMESPACE
-enum Strategies { kRotateStrgy, kMoveStrgy, kScaleStrgy };
-enum Operation {
-  kRotValueX,
-  kRotSliderX,
-  kRotValueY,
-  kRotSliderY,
-  kRotValueZ,
-  kRotSliderZ,
-  kMovePlusX,
-  kMoveMinusX,
-  kMovePlusY,
-  kMoveMinusY,
-  kMovePlusZ,
-  kMoveMinusZ,
-  kScalePlusX,
-  kScaleMinusX,
-  kScalePlusY,
-  kScaleMinusY,
-  kScalePlusZ,
-  kScaleMinusZ,
-};
-
-class Invoker {  // TODO delete
- public:
-  void Execute(Command *command, Operation operation);
-};
 
 class MainWindow : public QOpenGLWidget {
   Q_OBJECT
@@ -83,8 +57,8 @@ class MainWindow : public QOpenGLWidget {
   void paintGL() override;
   void wheelEvent(QWheelEvent *event) override;
 
-  Ui::MainWindow *getUi();
-  s21::Controller &getController();
+  // Ui::MainWindow *getUi(); // TODO delete
+  // s21::Controller &getController(); // TODO delete
 
   void SaveSettings();
   void LoadSettings();
@@ -164,8 +138,8 @@ class MainWindow : public QOpenGLWidget {
 
   void on_horizontalScrollBar_rot_x_valueChanged(int value);
   void on_horizontalScrollBar_rot_x_sliderReleased();
-  void on_horizontalScrollBar_rot_y_sliderReleased();
   void on_horizontalScrollBar_rot_y_valueChanged(int value);
+  void on_horizontalScrollBar_rot_y_sliderReleased();
   void on_horizontalScrollBar_rot_z_valueChanged(int value);
   void on_horizontalScrollBar_rot_z_sliderReleased();
   void on_verticalScrollBar_valueChanged(int value);
@@ -176,7 +150,7 @@ class MainWindow : public QOpenGLWidget {
   int value_;
   float xRot_, yRot_, zRot_;
   float lastPosX_, lastPosY_;
-  double rotValueX_, rotValueY_, rotValueZ_, qvalue_;
+  double rotValueX_, rotValueY_, rotValueZ_, qValue_;
   double bgrClrR_, bgrClrG_, bgrClrB_;
   double edgClrR_, edgClrG_, edgClrB_;
   double vertClrR_, vertClrG_, vertClrB_;
@@ -187,8 +161,6 @@ class MainWindow : public QOpenGLWidget {
   QPoint mPos_;
   QImage image_;
 
-  s21::Invoker invoker_;
-  std::vector<Strategy *> strategies_;
   Ui::MainWindow *ui_;
   s21::Controller controller_;
   double maxCoord_;
@@ -200,4 +172,4 @@ class MainWindow : public QOpenGLWidget {
 };
 }  // namespace s21
 
-#endif  // CPP4_3DVIEWER_V2_0_2_SRC_VIEW_MAINWINDOW_H_
+#endif  // CPP4_3DVIEWER_V2_0_3_SRC_VIEW_MAINWINDOW_H_

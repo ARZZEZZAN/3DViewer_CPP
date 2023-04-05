@@ -17,8 +17,8 @@ SOURCES += \
     ../Model/Facade/facade.cc \
     ../Model/Figure/figure.cc \
     ../Controller/controller.cc \
-    StrategyActions/strategyActions.cc \
-    Command/command.cc \
+    ../Model/StrategyActions/strategyActions.cc \
+    ../Model/Command/command.cc \
     mainwindow.cc
 
 HEADERS += \
@@ -28,8 +28,8 @@ HEADERS += \
     ../Model/Facade/facade.h \
     ../Model/Figure/figure.h \
     ../Controller/controller.h \
-    StrategyActions/strategyActions.h \
-    Command/command.h \
+    ../Model/StrategyActions/strategyActions.h \
+    ../Model/Command/command.h \
     mainwindow.h
 FORMS += \
     mainwindow.ui

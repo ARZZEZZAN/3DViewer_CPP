@@ -1,4 +1,4 @@
-#include "Command/command.h"
+#include "mainwindow.h"
 
 namespace s21 {
 MainWindow::MainWindow(QWidget* parent)
@@ -6,8 +6,7 @@ MainWindow::MainWindow(QWidget* parent)
   xRot_ = yRot_ = zRot_ = 0.0;
   lastPosX_ = lastPosY_ = 0.0;
   numberFps_ = 0;
-  strategies_ = {new RotateStrategy(this), new MoveStrategy(this),
-                 new ScaleStrategy(this)};
+
   ui_->setupUi(this);
   settings_ = new QSettings(this);
   LoadSettings();
@@ -18,9 +17,7 @@ MainWindow::MainWindow(QWidget* parent)
 MainWindow::~MainWindow() {
   delete gifTmr_;
   controller_.Remove();
-  for (auto strategy : strategies_) {  // TODO move to backend
-    delete strategy;
-  }
+
   delete ui_;
 }
 
@@ -165,16 +162,16 @@ void MainWindow::on_pushButton_save_settings_clicked() { SaveSettings(); }
 
 void MainWindow::wheelEvent(QWheelEvent* event) {
   double value = 1 + event->angleDelta().y() / 940.0;
-  controller_.Scale(value, kAll);
+  controller_.Scale(value, kScaleAll);
   update();
 }
 
 void MainWindow::on_verticalScrollBar_valueChanged(int value) {
-  qvalue_ = (1 + value * -1 / 2500.0);
+  qValue_ = (1 + value * -1 / 2500.0);
 }
 
 void MainWindow::on_verticalScrollBar_sliderReleased() {
-  controller_.Scale(qvalue_, kAll);
+  controller_.Scale(qValue_, kScaleAll);
   ui_->verticalScrollBar->setValue(0);
   update();
 }
@@ -216,65 +213,80 @@ void MainWindow::on_horizontalScrollBar_vertexes_B_valueChanged(int value) {
 
 // Scale
 void MainWindow::on_pushButton_sc_x_plus_clicked() {
-  invoker_.Execute(new ScaleCommand(strategies_[kScaleStrgy]), kScalePlusX);
+  controller_.Transform(value_, kScalePlusX);
+  update();
 }
 void MainWindow::on_pushButton_sc_y_plus_clicked() {
-  invoker_.Execute(new ScaleCommand(strategies_[kScaleStrgy]), kScalePlusY);
+  controller_.Transform(value_, kScalePlusY);
+  update();
 }
 void MainWindow::on_pushButton_sc_z_plus_clicked() {
-  invoker_.Execute(new ScaleCommand(strategies_[kScaleStrgy]), kScalePlusZ);
+  controller_.Transform(value_, kScalePlusZ);
+  update();
 }
 void MainWindow::on_pushButton_sc_x_minus_clicked() {
-  invoker_.Execute(new ScaleCommand(strategies_[kScaleStrgy]), kScaleMinusX);
+  controller_.Transform(value_, kScaleMinusX);
+  update();
 }
 void MainWindow::on_pushButton_sc_y_minus_clicked() {
-  invoker_.Execute(new ScaleCommand(strategies_[kScaleStrgy]), kScaleMinusY);
+  controller_.Transform(value_, kScaleMinusY);
+  update();
 }
 void MainWindow::on_pushButton_sc_z_minus_clicked() {
-  invoker_.Execute(new ScaleCommand(strategies_[kScaleStrgy]), kScaleMinusZ);
+  controller_.Transform(value_, kScaleMinusZ);
+  update();
 }
 
 // Rotate
 void MainWindow::on_horizontalScrollBar_rot_x_valueChanged(int value) {
-  this->value_ = value;
-  invoker_.Execute(new RotateCommand(strategies_[kRotateStrgy]), kRotValueX);
+  value_ = value / 36.0;
 }
 void MainWindow::on_horizontalScrollBar_rot_x_sliderReleased() {
-  invoker_.Execute(new RotateCommand(strategies_[kRotateStrgy]), kRotSliderX);
-}
-void MainWindow::on_horizontalScrollBar_rot_y_sliderReleased() {
-  invoker_.Execute(new RotateCommand(strategies_[kRotateStrgy]), kRotSliderY);
+  controller_.Transform(value_, kRotSliderX);
+  ui_->horizontalScrollBar_rot_x->setValue(0);
+  update();
 }
 void MainWindow::on_horizontalScrollBar_rot_y_valueChanged(int value) {
-  this->value_ = value;
-  invoker_.Execute(new RotateCommand(strategies_[kRotateStrgy]), kRotValueY);
+  value_ = value / 36.0;
+}
+void MainWindow::on_horizontalScrollBar_rot_y_sliderReleased() {
+  controller_.Transform(value_, kRotSliderY);
+  ui_->horizontalScrollBar_rot_y->setValue(0);
+  update();
 }
 void MainWindow::on_horizontalScrollBar_rot_z_valueChanged(int value) {
-  this->value_ = value;
-  invoker_.Execute(new RotateCommand(strategies_[kRotateStrgy]), kRotValueZ);
+  value_ = value / 36.0;
 }
 void MainWindow::on_horizontalScrollBar_rot_z_sliderReleased() {
-  invoker_.Execute(new RotateCommand(strategies_[kRotateStrgy]), kRotSliderZ);
+  controller_.Transform(value_, kRotSliderZ);
+  ui_->horizontalScrollBar_rot_z->setValue(0);
+  update();
 }
 
 // Move
 void MainWindow::on_pushButton_mv_x_plus_clicked() {
-  invoker_.Execute(new MoveCommand(strategies_[kMoveStrgy]), kMovePlusX);
+  controller_.Move(value_, kMovePlusX);
+  update();
 }
 void MainWindow::on_pushButton_mv_x_minus_clicked() {
-  invoker_.Execute(new MoveCommand(strategies_[kMoveStrgy]), kMoveMinusX);
+  controller_.Move(value_, kMoveMinusX);
+  update();
 }
 void MainWindow::on_pushButton_mv_y_plus_clicked() {
-  invoker_.Execute(new MoveCommand(strategies_[kMoveStrgy]), kMovePlusY);
+  controller_.Move(value_, kMovePlusY);
+  update();
 }
 void MainWindow::on_pushButton_mv_y_minus_clicked() {
-  invoker_.Execute(new MoveCommand(strategies_[kMoveStrgy]), kMoveMinusY);
-}
-void MainWindow::on_pushButton_mv_z_minus_clicked() {
-  invoker_.Execute(new MoveCommand(strategies_[kMoveStrgy]), kMovePlusZ);
+  controller_.Move(value_, kMoveMinusY);
+  update();
 }
 void MainWindow::on_pushButton_mv_z_plus_clicked() {
-  invoker_.Execute(new MoveCommand(strategies_[kMoveStrgy]), kMoveMinusZ);
+  controller_.Move(value_, kMovePlusZ);
+  update();
+}
+void MainWindow::on_pushButton_mv_z_minus_clicked() {
+  controller_.Move(value_, kMoveMinusZ);
+  update();
 }
 
 void MainWindow::on_pushButton_screenshot_clicked() {
@@ -406,8 +418,8 @@ void MainWindow::LoadSettings() {
       settings_->value("horizontalScrollBar_vertexes_B").toInt());
 }
 
-s21::Controller& MainWindow::getController() { return controller_; }
-Ui::MainWindow* MainWindow::getUi() { return ui_; }
+// s21::Controller& MainWindow::getController() { return controller_; } // TODO
+// delete Ui::MainWindow* MainWindow::getUi() { return ui_; } // TODO delete
 
 int MainWindow::getValue() const { return value_; }
 

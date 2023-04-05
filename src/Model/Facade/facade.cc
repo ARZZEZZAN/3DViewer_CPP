@@ -1,20 +1,30 @@
 #include "facade.h"
 
 namespace s21 {
+Facade::Facade() {
+  strategies_ = {new RotateStrategy(figure_, affine_), new MoveStrategy(figure_, affine_),
+                 new ScaleStrategy(figure_, affine_)};
+}
+Facade::~Facade() {
+  for (auto strategy : strategies_) {  // TODO move to backend
+    delete strategy;
+  }
+}
+
 //  Parser
 void Facade::Parse(const std::string& fileName) {
   parser_.Parse(fileName, figure_);
 }
 
 // Affine
-void Facade::Move(double move, int coordinate) {
-  affine_.Move(figure_, move, coordinate);
+void Facade::Move(double move, Operation role) {
+  invoker_.Execute(new MoveCommand(strategies_[kMoveStrgy]), role, move);
 }
-void Facade::Transform(double angle, int coordinate) {
-  affine_.Transform(figure_, angle, coordinate);
+void Facade::Transform(double angle, Operation role) {
+  invoker_.Execute(new RotateCommand(strategies_[kRotateStrgy]), role, angle);
 }
-void Facade::Scale(double scale, int coordinate) {
-  affine_.Scale(figure_, scale, coordinate);
+void Facade::Scale(double scale, Operation role) {
+  invoker_.Execute(new RotateCommand(strategies_[kRotateStrgy]), role, scale);
 }
 
 // Figure
@@ -45,5 +55,4 @@ void Facade::setCountPolygons(int countPolygons) {
 void Facade::setMaxCoordinate(double maxCoordinate) {
   figure_.setMaxCoordinate(maxCoordinate);
 }
-
 }  // namespace s21

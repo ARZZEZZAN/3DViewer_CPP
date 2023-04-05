@@ -1,5 +1,5 @@
-#ifndef CPP4_3DVIEWER_V2_0_2_SRC_MODEL_MODEL_H_
-#define CPP4_3DVIEWER_V2_0_2_SRC_MODEL_MODEL_H_
+#ifndef CPP4_3DVIEWER_V2_0_3_SRC_MODEL_MODEL_H_
+#define CPP4_3DVIEWER_V2_0_3_SRC_MODEL_MODEL_H_
 #include <string.h>
 
 #include <cmath>
@@ -10,18 +10,22 @@
 #include <string>
 #include <vector>
 
-#include "../Affine/affine.h"
+#include "../Command/command.h"
 #include "../Parser/parser.h"
+
 namespace s21 {
 class Facade {
  public:
+  Facade();
+  ~Facade();
+
   //  Parser
   void Parse(const std::string& fileName);
 
   // Affine
-  void Move(double move, int coordinate);
-  void Transform(double angle, int coordinate);
-  void Scale(double scale, int coordinate);
+  void Move(double move, Operation role);
+  void Transform(double angle, Operation role);
+  void Scale(double scale, Operation role);
 
   // Figure
   void Clear();
@@ -41,9 +45,12 @@ class Facade {
   void setMaxCoordinate(double maxCoordinate);
 
  private:
+  // int value_;
   Parser parser_;
   Affine affine_;
   Figure figure_;
+  Invoker invoker_;
+  std::vector<Strategy*> strategies_;
 };
 }  // namespace s21
-#endif  // CPP4_3DVIEWER_V2_0_2_SRC_MODEL_MODEL_H_
+#endif  // CPP4_3DVIEWER_V2_0_3_SRC_MODEL_MODEL_H_

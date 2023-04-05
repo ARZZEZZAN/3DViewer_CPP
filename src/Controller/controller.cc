@@ -5,14 +5,14 @@ namespace s21 {
 void Controller::Parse(const std::string& fileName) { facade_.Parse(fileName); }
 
 // Affine
-void Controller::Move(double move, int coordinate) {
-  facade_.Move(move, coordinate);
+void Controller::Move(double move, Operation role) {
+  facade_.Move(move, role);
 }
-void Controller::Transform(double angle, int coordinate) {
-  facade_.Transform(angle, coordinate);
+void Controller::Transform(double angle, Operation role) {
+  facade_.Transform(angle, role);
 }
-void Controller::Scale(double scale, int coordinate) {
-  facade_.Scale(scale, coordinate);
+void Controller::Scale(double scale, Operation role) {
+  facade_.Scale(scale, role);
 }
 
 // Figure
