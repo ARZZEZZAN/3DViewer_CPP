@@ -44,23 +44,6 @@ class MoveStrategy : public Strategy {
   void MoveZMinus();
 };
 
-class ColorStrategy : public Strategy {
- public:
-  ColorStrategy(MainWindow* mainWindow);
-  void Execute(Operation role) override;
-
- private:
-  void BgrClrR();
-  void BgrClrG();
-  void BgrClrB();
-  void EdgClrR();
-  void EdgClrG();
-  void EdgClrB();
-  void VerClrR();
-  void VerClrG();
-  void VerClrB();
-};
-
 class ScaleStrategy : public Strategy {
  public:
   ScaleStrategy(MainWindow* mainWindow);

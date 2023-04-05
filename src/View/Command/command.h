@@ -6,7 +6,6 @@
 namespace s21 {
 class Command {
  public:
-  Command() {}
   virtual ~Command() {}
   virtual void Execute(Operation role) = 0;
 
@@ -24,13 +23,6 @@ class RotateCommand : public Command {
 class MoveCommand : public Command {
  public:
   MoveCommand(Strategy* strategy);
-
-  void Execute(Operation role) override;
-};
-
-class ColorCommand : public Command {
- public:
-  ColorCommand(Strategy* strategy);
 
   void Execute(Operation role) override;
 };

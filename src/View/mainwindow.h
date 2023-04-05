@@ -33,11 +33,11 @@ class MainWindow;
 }
 
 namespace s21 {
-class Command;
-class Strategy;
+class Command;   // TODO delete
+class Strategy;  // TODO delete
 
 QT_END_NAMESPACE
-enum Strategies { kRotateStrgy, kMoveStrgy, kColorStrgy, kScaleStrgy };
+enum Strategies { kRotateStrgy, kMoveStrgy, kScaleStrgy };
 enum Operation {
   kRotValueX,
   kRotSliderX,
@@ -51,21 +51,17 @@ enum Operation {
   kMoveMinusY,
   kMovePlusZ,
   kMoveMinusZ,
-  kBgrColorRed,
-  kBgrColorGreen,
-  kBgrColorBlue,
-  kEdgColorRed,
-  kEdgColorGreen,
-  kEdgColorBlue,
-  kVerColorRed,
-  kVerColorGreen,
-  kVerColorBlue,
   kScalePlusX,
   kScaleMinusX,
   kScalePlusY,
   kScaleMinusY,
   kScalePlusZ,
   kScaleMinusZ,
+};
+
+class Invoker {  // TODO delete
+ public:
+  void Execute(Command *command, Operation operation);
 };
 
 class MainWindow : public QOpenGLWidget {
@@ -95,7 +91,7 @@ class MainWindow : public QOpenGLWidget {
 
   void CommandActionEvent(Command *command, Operation operation);
 
-  int getValue() const;
+  int getValue() const;  // TODO Check mb delete
 
   double getRotValueX() const;
   double getRotValueY() const;
@@ -185,9 +181,13 @@ class MainWindow : public QOpenGLWidget {
   double edgClrR_, edgClrG_, edgClrB_;
   double vertClrR_, vertClrG_, vertClrB_;
 
+  void SetColor(double value, void (MainWindow::*setFunc)(double),
+                QSpinBox *spinBox);
+
   QPoint mPos_;
   QImage image_;
 
+  s21::Invoker invoker_;
   std::vector<Strategy *> strategies_;
   Ui::MainWindow *ui_;
   s21::Controller controller_;
