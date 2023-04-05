@@ -27,13 +27,6 @@ class MoveCommand : public Command {
   void Execute(Operation role) override;
 };
 
-class ColorCommand : public Command {
- public:
-  ColorCommand(Strategy* strategy);
-
-  void Execute(Operation role) override;
-};
-
 class ScaleCommand : public Command {
  public:
   ScaleCommand(Strategy* strategy);

@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget* parent)
   lastPosX_ = lastPosY_ = 0.0;
   numberFps_ = 0;
   strategies_ = {new RotateStrategy(this), new MoveStrategy(this),
-                 new ColorStrategy(this), new ScaleStrategy(this)};
+                  new ScaleStrategy(this)};
   ui_->setupUi(this);
   settings_ = new QSettings(this);
   LoadSettings();
@@ -313,71 +313,79 @@ s21::Controller& MainWindow::getController() { return controller_; }
 Ui::MainWindow* MainWindow::getUi() { return ui_; }
 
 void MainWindow::on_pushButton_sc_x_plus_clicked() {
-  invoker_.Execute(new ColorCommand(strategies_[kScaleStrgy]), kScalePlusX);
+  invoker_.Execute(new ScaleCommand(strategies_[kScaleStrgy]), kScalePlusX);
 }
 
 void MainWindow::on_pushButton_sc_y_plus_clicked() {
-  invoker_.Execute(new ColorCommand(strategies_[kScaleStrgy]), kScalePlusY);
+  invoker_.Execute(new ScaleCommand(strategies_[kScaleStrgy]), kScalePlusY);
 }
 
 void MainWindow::on_pushButton_sc_z_plus_clicked() {
-  invoker_.Execute(new ColorCommand(strategies_[kScaleStrgy]), kScalePlusZ);
+  invoker_.Execute(new ScaleCommand(strategies_[kScaleStrgy]), kScalePlusZ);
 }
 
 void MainWindow::on_pushButton_sc_x_minus_clicked() {
-  invoker_.Execute(new ColorCommand(strategies_[kScaleStrgy]), kScaleMinusX);
+  invoker_.Execute(new ScaleCommand(strategies_[kScaleStrgy]), kScaleMinusX);
 }
 
 void MainWindow::on_pushButton_sc_y_minus_clicked() {
-  invoker_.Execute(new ColorCommand(strategies_[kScaleStrgy]), kScaleMinusY);
+  invoker_.Execute(new ScaleCommand(strategies_[kScaleStrgy]), kScaleMinusY);
 }
 
 void MainWindow::on_pushButton_sc_z_minus_clicked() {
-  invoker_.Execute(new ColorCommand(strategies_[kScaleStrgy]), kScaleMinusZ);
+  invoker_.Execute(new ScaleCommand(strategies_[kScaleStrgy]), kScaleMinusZ);
 }
+
+void MainWindow::SetColor(double value, void (MainWindow::*setFunc)(double),
+                          QSpinBox* spinBox) {
+  (this->*setFunc)(value / 100.0);
+  spinBox->setValue(value);
+  update();
+}
+
 void MainWindow::on_horizontalScrollBar_bgr_R_valueChanged(int value) {
-  this->value_ = value;
-  invoker_.Execute(new ColorCommand(strategies_[kColorStrgy]), kBgrColorRed);
+  SetColor(value, &MainWindow::setBgrClrR,
+           ui_->spinBox_bgr_R);
 }
 
 void MainWindow::on_horizontalScrollBar_bgr_G_valueChanged(int value) {
-  this->value_ = value;
-  invoker_.Execute(new ColorCommand(strategies_[kColorStrgy]), kBgrColorGreen);
+  SetColor(value, &MainWindow::setBgrClrG,
+           ui_->spinBox_bgr_G);
 }
 
 void MainWindow::on_horizontalScrollBar_bgr_B_valueChanged(int value) {
-  this->value_ = value;
-  invoker_.Execute(new ColorCommand(strategies_[kColorStrgy]), kBgrColorBlue);
+  SetColor(value, &MainWindow::setBgrClrB,
+           ui_->spinBox_bgr_B);
 }
 
 void MainWindow::on_horizontalScrollBar_edges_R_valueChanged(int value) {
-  this->value_ = value;
-  invoker_.Execute(new ColorCommand(strategies_[kColorStrgy]), kEdgColorRed);
+  SetColor(value, &MainWindow::setEdgClrR,
+           ui_->spinBox_edges_R);
 }
 
 void MainWindow::on_horizontalScrollBar_edges_G_valueChanged(int value) {
-  this->value_ = value;
-  invoker_.Execute(new ColorCommand(strategies_[kColorStrgy]), kEdgColorGreen);
+  SetColor(value, &MainWindow::setEdgClrG,
+           ui_->spinBox_edges_G);
 }
 
 void MainWindow::on_horizontalScrollBar_edges_B_valueChanged(int value) {
-  this->value_ = value;
-  invoker_.Execute(new ColorCommand(strategies_[kColorStrgy]), kEdgColorBlue);
+  SetColor(value, &MainWindow::setEdgClrB,
+           ui_->spinBox_edges_B);
 }
 
 void MainWindow::on_horizontalScrollBar_vertexes_R_valueChanged(int value) {
-  this->value_ = value;
-  invoker_.Execute(new ColorCommand(strategies_[kColorStrgy]), kVerColorRed);
+  SetColor(value, &MainWindow::setVertClrR,
+           ui_->spinBox_vertexes_R);
 }
 
 void MainWindow::on_horizontalScrollBar_vertexes_G_valueChanged(int value) {
-  this->value_ = value;
-  invoker_.Execute(new ColorCommand(strategies_[kColorStrgy]), kVerColorGreen);
+  SetColor(value, &MainWindow::setVertClrG,
+           ui_->spinBox_vertexes_G);
 }
 
 void MainWindow::on_horizontalScrollBar_vertexes_B_valueChanged(int value) {
-  this->value_ = value;
-  invoker_.Execute(new ColorCommand(strategies_[kColorStrgy]), kVerColorBlue);
+  SetColor(value, &MainWindow::setVertClrB,
+           ui_->spinBox_vertexes_B);
 }
 
 void MainWindow::on_horizontalScrollBar_rot_x_valueChanged(int value) {
