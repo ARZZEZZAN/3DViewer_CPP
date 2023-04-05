@@ -1,41 +1,49 @@
 #include "affine.h"
 namespace s21 {
-Affine::Affine() {}
-Affine::~Affine() {}
-void Affine::Move(Parser *p, double move, int coordinate) {
-  for (int i = 0; i < int(p->getCountV()); i++) {
-    p->getVertexs().at(i * 3 + coordinate) += move;
+
+void Affine::Move(Figure &figure, double move, int coordinate) {
+  std::vector<double> tmp = figure.getVertexes();
+  for (size_t i = 0; i < size_t(figure.getCountVertexes()); i++) {
+    tmp.at(i * 3 + coordinate) += move;
   }
+  figure.setVertexes(tmp);
 }
-void Affine::Transform(Parser *p, double angle, int coordinate) {
-  for (int i = 0; i < int(p->getCountV()); i++) {
-    double x = p->getVertexs().at(i * 3);
-    double y = p->getVertexs().at(i * 3 + 1);
-    double z = p->getVertexs().at(i * 3 + 2);
+
+void Affine::Transform(Figure &figure, double angle, int coordinate) {
+  std::vector<double> tmp = figure.getVertexes();
+  for (size_t i = 0; i < size_t(figure.getCountVertexes()); i++) {
+    double x = tmp.at(i * 3);
+    double y = tmp.at(i * 3 + 1);
+    double z = tmp.at(i * 3 + 2);
     if (coordinate == kX) {
-      p->getVertexs().at(i * 3 + 1) = cos(angle) * y - sin(angle) * z;
-      p->getVertexs().at(i * 3 + 2) = sin(angle) * y + cos(angle) * z;
+      tmp.at(i * 3 + 1) = cos(angle) * y - sin(angle) * z;
+      tmp.at(i * 3 + 2) = sin(angle) * y + cos(angle) * z;
     } else if (coordinate == kY) {
-      p->getVertexs().at(i * 3) = cos(angle) * x + sin(angle) * z;
-      p->getVertexs().at(i * 3 + 2) = (-sin(angle)) * x + cos(angle) * z;
+      tmp.at(i * 3) = cos(angle) * x + sin(angle) * z;
+      tmp.at(i * 3 + 2) = (-sin(angle)) * x + cos(angle) * z;
     } else if (coordinate == kZ) {
-      p->getVertexs().at(i * 3) = cos(angle) * x - sin(angle) * y;
-      p->getVertexs().at(i * 3 + 1) = sin(angle) * x + cos(angle) * y;
+      tmp.at(i * 3) = cos(angle) * x - sin(angle) * y;
+      tmp.at(i * 3 + 1) = sin(angle) * x + cos(angle) * y;
     }
   }
+  figure.setVertexes(tmp);
 }
-void Affine::Scaling(Parser *p, double scale, int coordinate) {
+
+void Affine::Scale(Figure &figure, double scale, int coordinate) {
+  std::vector<double> tmp = figure.getVertexes();
   int i = coordinate;
   if (coordinate == kAll) {
     i = 0;
   }
-  while (i < (int(p->getCountV()) * 3)) {
-    p->getVertexs().at(i) *= scale;
+  while (i < (int(figure.getCountVertexes()) * 3)) {
+    tmp.at(i) *= scale;
     if (coordinate == kAll) {
       i++;
     } else {
       i += 3;
     }
   }
+  figure.setVertexes(tmp);
 }
+
 }  // namespace s21

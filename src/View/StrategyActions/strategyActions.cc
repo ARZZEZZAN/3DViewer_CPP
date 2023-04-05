@@ -29,7 +29,8 @@ void RotateStrategy::Execute(Operation role) {
       RotateZSlider();
       break;
     default:
-      throw std::invalid_argument("Pay attention for the type of operation");
+      throw std::invalid_argument(
+          "Pay attention for the type of operation");  // TODO mb delete
       break;
   }
 }
@@ -150,7 +151,7 @@ void ScaleStrategy::Execute(Operation role) {
 
 void ScaleStrategy::ScalePlusX() {
   double value = 1 + ui_->doubleSpinBox_sc_value->value();
-  controller_->Scaling(value, kX);
+  controller_->Scale(value, kX);
   mainWindow_->update();
 }
 void ScaleStrategy::ScaleMinusX() {
@@ -158,13 +159,13 @@ void ScaleStrategy::ScaleMinusX() {
   if (value == 0) {
     value = 0.1;
   }
-  controller_->Scaling(value, kX);
+  controller_->Scale(value, kX);
   mainWindow_->update();
 }
 
 void ScaleStrategy::ScalePlusY() {
   double value = 1 + ui_->doubleSpinBox_sc_value->value();
-  controller_->Scaling(value, kY);
+  controller_->Scale(value, kY);
   mainWindow_->update();
 }
 void ScaleStrategy::ScaleMinusY() {
@@ -172,13 +173,13 @@ void ScaleStrategy::ScaleMinusY() {
   if (value == 0) {
     value = 0.1;
   }
-  controller_->Scaling(value, kY);
+  controller_->Scale(value, kY);
   mainWindow_->update();
 }
 
 void ScaleStrategy::ScalePlusZ() {
   double value = 1 + ui_->doubleSpinBox_sc_value->value();
-  controller_->Scaling(value, kZ);
+  controller_->Scale(value, kZ);
   mainWindow_->update();
 }
 void ScaleStrategy::ScaleMinusZ() {
@@ -186,7 +187,7 @@ void ScaleStrategy::ScaleMinusZ() {
   if (value == 0) {
     value = 0.1;
   }
-  controller_->Scaling(value, kZ);
+  controller_->Scale(value, kZ);
   mainWindow_->update();
 }
 

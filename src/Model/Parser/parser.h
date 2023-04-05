@@ -6,35 +6,28 @@
 #include <cmath>
 #include <fstream>
 #include <iostream>
+#include <set>
 #include <sstream>
 #include <string>
 #include <vector>
 
+#include "../Figure/figure.h"
+
+typedef std::pair<int, int> Pairs;
+
 namespace s21 {
 class Parser {
  public:
-  Parser();
-  ~Parser();
-  bool Parse(const std::string fileName);
-  std::vector<double>& getVertexs();
-  std::vector<int>& getFacets();
-  int getCountV();
-  int getCountE();
-  int getCountP();
-  double getMaxCoordinate();
-  void Clear();
+  void Parse(const std::string& fileName, s21::Figure& figure);
 
  private:
-  std::vector<double> vertexs_;
-  std::vector<int> facets_;
-  int countV_;
-  int countE_;
-  int countP_;
+  s21::Figure figure_;
 
-  bool ParseConditions(std::string* fileLine, char type);
-  void ParseVertexs(std::string fileLine);
-  void ParseFacets(std::string fileLine);
-  std::vector<double> ParseLine(std::string fileLine);
+  bool ParseConditions(std::string& fileLine, char type);
+  void ParseVertexes(std::string& fileLine);
+  void ParseFacets(std::string& fileLine);
+  int ParseEdges(const std::vector<int>& vec);
+  std::vector<double> ParseLine(std::string& fileLine);
   void DelSpace(std::string& fileLine);
 };
 }  // namespace s21

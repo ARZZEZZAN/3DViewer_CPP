@@ -1,41 +1,42 @@
 #include <gtest/gtest.h>
 
-#include "../Model/model.h"
+#include "../Controller/controller.h"
 #define cube "Test/cube.obj"
 #define accuracy 1e-7
 
 TEST(Parser, parser1) {
-  s21::Model m;
-  m.getParser().Parse(cube);
-  EXPECT_EQ(m.getParser().getCountV(), 8);
-  EXPECT_EQ(m.getParser().getCountE(), 30);
-  EXPECT_EQ(m.getParser().getCountP(), 10);
+  s21::Controller f;
+  f.Parse(cube);
+  EXPECT_EQ(f.getCountVertexes(), 8);
+  EXPECT_EQ(f.getCountEdges(), 12);
+  EXPECT_EQ(f.getCountPolygons(), 6);
+  EXPECT_EQ(f.getMaxCoordinate(), 1);
 }
 
 TEST(Parser, parser2) {
-  s21::Model m;
-  m.getParser().Parse(cube);
-  m.getParser().Clear();
+  s21::Controller f;
+  f.Parse(cube);
+  f.Remove();
 
-  EXPECT_EQ(m.getParser().getCountV(), 0);
-  EXPECT_EQ(m.getParser().getCountE(), 0);
-  EXPECT_EQ(m.getParser().getCountP(), 0);
+  EXPECT_EQ(f.getCountVertexes(), 0);
+  EXPECT_EQ(f.getCountEdges(), 0);
+  EXPECT_EQ(f.getCountPolygons(), 0);
 }
 
 TEST(Affine, affine_move_plus_x) {
   coordinate_t coor = kX;
   std::vector<double> v_copy;
-  s21::Model m;
+  s21::Controller f;
   double value = 2;
   bool res = true;
 
-  m.getParser().Parse(cube);
-  std::vector<double> v_orig = m.getParser().getVertexs();
+  f.Parse(cube);
+  std::vector<double> v_orig = f.getVertexes();
   for (size_t i = 0; i < v_orig.size(); i++) {
     v_copy.push_back(v_orig.at(i));
   }
-  m.getAffine().Move(&m.getParser(), value, coor);
-  v_orig = m.getParser().getVertexs();
+  f.Move(value, coor);
+  v_orig = f.getVertexes();
   for (size_t i = 0; i < (v_copy.size() / 3); i++) {
     v_copy.at(i * 3 + coor) += value;
   }
@@ -51,17 +52,17 @@ TEST(Affine, affine_move_plus_x) {
 TEST(Affine, affine_move_plus_y) {
   coordinate_t coor = kY;
   std::vector<double> v_copy;
-  s21::Model m;
+  s21::Controller f;
   double value = 2;
   bool res = true;
 
-  m.getParser().Parse(cube);
-  std::vector<double> v_orig = m.getParser().getVertexs();
+  f.Parse(cube);
+  std::vector<double> v_orig = f.getVertexes();
   for (size_t i = 0; i < v_orig.size(); i++) {
     v_copy.push_back(v_orig.at(i));
   }
-  m.getAffine().Move(&m.getParser(), value, coor);
-  v_orig = m.getParser().getVertexs();
+  f.Move(value, coor);
+  v_orig = f.getVertexes();
   for (size_t i = 0; i < (v_copy.size() / 3); i++) {
     v_copy.at(i * 3 + coor) += value;
   }
@@ -77,17 +78,17 @@ TEST(Affine, affine_move_plus_y) {
 TEST(Affine, affine_move_plus_z) {
   coordinate_t coor = kZ;
   std::vector<double> v_copy;
-  s21::Model m;
+  s21::Controller f;
   double value = 2;
   bool res = true;
 
-  m.getParser().Parse(cube);
-  std::vector<double> v_orig = m.getParser().getVertexs();
+  f.Parse(cube);
+  std::vector<double> v_orig = f.getVertexes();
   for (size_t i = 0; i < v_orig.size(); i++) {
     v_copy.push_back(v_orig.at(i));
   }
-  m.getAffine().Move(&m.getParser(), value, coor);
-  v_orig = m.getParser().getVertexs();
+  f.Move(value, coor);
+  v_orig = f.getVertexes();
   for (size_t i = 0; i < (v_copy.size() / 3); i++) {
     v_copy.at(i * 3 + coor) += value;
   }
@@ -103,43 +104,43 @@ TEST(Affine, affine_move_plus_z) {
 TEST(Affine, affine_move_minus_x) {
   coordinate_t coor = kX;
   std::vector<double> v_copy;
-  s21::Model m;
+  s21::Controller f;
   double value = -2;
   bool res = true;
 
-  m.getParser().Parse(cube);
-  std::vector<double> v_orig = m.getParser().getVertexs();
+  f.Parse(cube);
+  std::vector<double> v_orig = f.getVertexes();
   for (size_t i = 0; i < v_orig.size(); i++) {
     v_copy.push_back(v_orig.at(i));
   }
-  m.getAffine().Move(&m.getParser(), value, coor);
-  v_orig = m.getParser().getVertexs();
+  f.Move(value, coor);
+  v_orig = f.getVertexes();
   for (size_t i = 0; i < (v_copy.size() / 3); i++) {
     v_copy.at(i * 3 + coor) += value;
   }
-
   for (size_t i = 0; i < v_copy.size(); i++) {
     if (fabs((v_orig.at(i) - v_copy.at(i))) > accuracy) {
       res = false;
     }
   }
+
   EXPECT_EQ(res, true);
 }
 
 TEST(Affine, affine_move_minus_y) {
   coordinate_t coor = kY;
   std::vector<double> v_copy;
-  s21::Model m;
+  s21::Controller f;
   double value = -2;
   bool res = true;
 
-  m.getParser().Parse(cube);
-  std::vector<double> v_orig = m.getParser().getVertexs();
+  f.Parse(cube);
+  std::vector<double> v_orig = f.getVertexes();
   for (size_t i = 0; i < v_orig.size(); i++) {
     v_copy.push_back(v_orig.at(i));
   }
-  m.getAffine().Move(&m.getParser(), value, coor);
-  v_orig = m.getParser().getVertexs();
+  f.Move(value, coor);
+  v_orig = f.getVertexes();
   for (size_t i = 0; i < (v_copy.size() / 3); i++) {
     v_copy.at(i * 3 + coor) += value;
   }
@@ -155,17 +156,17 @@ TEST(Affine, affine_move_minus_y) {
 TEST(Affine, affine_move_minus_z) {
   coordinate_t coor = kZ;
   std::vector<double> v_copy;
-  s21::Model m;
+  s21::Controller f;
   double value = -2;
   bool res = true;
 
-  m.getParser().Parse(cube);
-  std::vector<double> v_orig = m.getParser().getVertexs();
+  f.Parse(cube);
+  std::vector<double> v_orig = f.getVertexes();
   for (size_t i = 0; i < v_orig.size(); i++) {
     v_copy.push_back(v_orig.at(i));
   }
-  m.getAffine().Move(&m.getParser(), value, coor);
-  v_orig = m.getParser().getVertexs();
+  f.Move(value, coor);
+  v_orig = f.getVertexes();
   for (size_t i = 0; i < (v_copy.size() / 3); i++) {
     v_copy.at(i * 3 + coor) += value;
   }
@@ -181,17 +182,17 @@ TEST(Affine, affine_move_minus_z) {
 TEST(Affine, affine_tansform_plus_x) {
   coordinate_t coor = kX;
   std::vector<double> v_copy;
-  s21::Model m;
+  s21::Controller f;
   double value = 2;
   bool res = true;
 
-  m.getParser().Parse(cube);
-  std::vector<double> v_orig = m.getParser().getVertexs();
+  f.Parse(cube);
+  std::vector<double> v_orig = f.getVertexes();
   for (size_t i = 0; i < v_orig.size(); i++) {
     v_copy.push_back(v_orig.at(i));
   }
-  m.getAffine().Transform(&m.getParser(), value, coor);
-  v_orig = m.getParser().getVertexs();
+  f.Transform(value, coor);
+  v_orig = f.getVertexes();
 
   for (size_t i = 0; i < (v_copy.size() / 3); i++) {
     double y = v_copy.at(i * 3 + 1);
@@ -211,17 +212,17 @@ TEST(Affine, affine_tansform_plus_x) {
 TEST(Affine, affine_tansform_plus_y) {
   coordinate_t coor = kY;
   std::vector<double> v_copy;
-  s21::Model m;
+  s21::Controller f;
   double value = 2;
   bool res = true;
 
-  m.getParser().Parse(cube);
-  std::vector<double> v_orig = m.getParser().getVertexs();
+  f.Parse(cube);
+  std::vector<double> v_orig = f.getVertexes();
   for (size_t i = 0; i < v_orig.size(); i++) {
     v_copy.push_back(v_orig.at(i));
   }
-  m.getAffine().Transform(&m.getParser(), value, coor);
-  v_orig = m.getParser().getVertexs();
+  f.Transform(value, coor);
+  v_orig = f.getVertexes();
 
   for (size_t i = 0; i < (v_copy.size() / 3); i++) {
     double x = v_copy.at(i * 3);
@@ -241,17 +242,17 @@ TEST(Affine, affine_tansform_plus_y) {
 TEST(Affine, affine_tansform_plus_z) {
   coordinate_t coor = kZ;
   std::vector<double> v_copy;
-  s21::Model m;
+  s21::Controller f;
   double value = 2;
   bool res = true;
 
-  m.getParser().Parse(cube);
-  std::vector<double> v_orig = m.getParser().getVertexs();
+  f.Parse(cube);
+  std::vector<double> v_orig = f.getVertexes();
   for (size_t i = 0; i < v_orig.size(); i++) {
     v_copy.push_back(v_orig.at(i));
   }
-  m.getAffine().Transform(&m.getParser(), value, coor);
-  v_orig = m.getParser().getVertexs();
+  f.Transform(value, coor);
+  v_orig = f.getVertexes();
 
   for (size_t i = 0; i < (v_copy.size() / 3); i++) {
     double x = v_copy.at(i * 3);
@@ -272,17 +273,17 @@ TEST(Affine, affine_tansform_plus_z) {
 TEST(Affine, affine_tansform_minus_x) {
   coordinate_t coor = kX;
   std::vector<double> v_copy;
-  s21::Model m;
+  s21::Controller f;
   double value = -2;
   bool res = true;
 
-  m.getParser().Parse(cube);
-  std::vector<double> v_orig = m.getParser().getVertexs();
+  f.Parse(cube);
+  std::vector<double> v_orig = f.getVertexes();
   for (size_t i = 0; i < v_orig.size(); i++) {
     v_copy.push_back(v_orig.at(i));
   }
-  m.getAffine().Transform(&m.getParser(), value, coor);
-  v_orig = m.getParser().getVertexs();
+  f.Transform(value, coor);
+  v_orig = f.getVertexes();
 
   for (size_t i = 0; i < (v_copy.size() / 3); i++) {
     double y = v_copy.at(i * 3 + 1);
@@ -302,17 +303,17 @@ TEST(Affine, affine_tansform_minus_x) {
 TEST(Affine, affine_tansform_minus_y) {
   coordinate_t coor = kY;
   std::vector<double> v_copy;
-  s21::Model m;
+  s21::Controller f;
   double value = -2;
   bool res = true;
 
-  m.getParser().Parse(cube);
-  std::vector<double> v_orig = m.getParser().getVertexs();
+  f.Parse(cube);
+  std::vector<double> v_orig = f.getVertexes();
   for (size_t i = 0; i < v_orig.size(); i++) {
     v_copy.push_back(v_orig.at(i));
   }
-  m.getAffine().Transform(&m.getParser(), value, coor);
-  v_orig = m.getParser().getVertexs();
+  f.Transform(value, coor);
+  v_orig = f.getVertexes();
 
   for (size_t i = 0; i < (v_copy.size() / 3); i++) {
     double x = v_copy.at(i * 3);
@@ -332,21 +333,22 @@ TEST(Affine, affine_tansform_minus_y) {
 TEST(Affine, affine_tansform_minus_z) {
   coordinate_t coor = kZ;
   std::vector<double> v_copy;
-  s21::Model m;
+  s21::Controller f;
   double value = -2;
   bool res = true;
 
-  m.getParser().Parse(cube);
-  std::vector<double> v_orig = m.getParser().getVertexs();
+  f.Parse(cube);
+  std::vector<double> v_orig = f.getVertexes();
   for (size_t i = 0; i < v_orig.size(); i++) {
     v_copy.push_back(v_orig.at(i));
   }
-  m.getAffine().Transform(&m.getParser(), value, coor);
-  v_orig = m.getParser().getVertexs();
+  f.Transform(value, coor);
+  v_orig = f.getVertexes();
 
   for (size_t i = 0; i < (v_copy.size() / 3); i++) {
     double x = v_copy.at(i * 3);
     double y = v_copy.at(i * 3 + 1);
+
     v_copy.at(i * 3) = cos(value) * x - sin(value) * y;
     v_copy.at(i * 3 + 1) = sin(value) * x + cos(value) * y;
   }
@@ -362,17 +364,17 @@ TEST(Affine, affine_tansform_minus_z) {
 TEST(Affine, affine_scaling_plus_all) {
   coordinate_t coor = kAll;
   std::vector<double> v_copy;
-  s21::Model m;
+  s21::Controller f;
   double value = 2;
   bool res = true;
 
-  m.getParser().Parse(cube);
-  std::vector<double> v_orig = m.getParser().getVertexs();
+  f.Parse(cube);
+  std::vector<double> v_orig = f.getVertexes();
   for (size_t i = 0; i < v_orig.size(); i++) {
     v_copy.push_back(v_orig.at(i));
   }
-  m.getAffine().Scaling(&m.getParser(), value, coor);
-  v_orig = m.getParser().getVertexs();
+  f.Scale(value, coor);
+  v_orig = f.getVertexes();
 
   size_t i = coor;
   if (coor == kAll) {
@@ -398,17 +400,17 @@ TEST(Affine, affine_scaling_plus_all) {
 TEST(Affine, affine_scaling_minus_all) {
   coordinate_t coor = kAll;
   std::vector<double> v_copy;
-  s21::Model m;
+  s21::Controller f;
   double value = -2;
   bool res = true;
 
-  m.getParser().Parse(cube);
-  std::vector<double> v_orig = m.getParser().getVertexs();
+  f.Parse(cube);
+  std::vector<double> v_orig = f.getVertexes();
   for (size_t i = 0; i < v_orig.size(); i++) {
     v_copy.push_back(v_orig.at(i));
   }
-  m.getAffine().Scaling(&m.getParser(), value, coor);
-  v_orig = m.getParser().getVertexs();
+  f.Scale(value, coor);
+  v_orig = f.getVertexes();
 
   size_t i = coor;
   if (coor == kAll) {
@@ -434,17 +436,17 @@ TEST(Affine, affine_scaling_minus_all) {
 TEST(Affine, affine_scaling_plus_x) {
   coordinate_t coor = kX;
   std::vector<double> v_copy;
-  s21::Model m;
+  s21::Controller f;
   double value = 2;
   bool res = true;
 
-  m.getParser().Parse(cube);
-  std::vector<double> v_orig = m.getParser().getVertexs();
+  f.Parse(cube);
+  std::vector<double> v_orig = f.getVertexes();
   for (size_t i = 0; i < v_orig.size(); i++) {
     v_copy.push_back(v_orig.at(i));
   }
-  m.getAffine().Scaling(&m.getParser(), value, coor);
-  v_orig = m.getParser().getVertexs();
+  f.Scale(value, coor);
+  v_orig = f.getVertexes();
 
   size_t i = coor;
   if (coor == kAll) {
@@ -470,17 +472,17 @@ TEST(Affine, affine_scaling_plus_x) {
 TEST(Affine, affine_scaling_plus_y) {
   coordinate_t coor = kY;
   std::vector<double> v_copy;
-  s21::Model m;
+  s21::Controller f;
   double value = 2;
   bool res = true;
 
-  m.getParser().Parse(cube);
-  std::vector<double> v_orig = m.getParser().getVertexs();
+  f.Parse(cube);
+  std::vector<double> v_orig = f.getVertexes();
   for (size_t i = 0; i < v_orig.size(); i++) {
     v_copy.push_back(v_orig.at(i));
   }
-  m.getAffine().Scaling(&m.getParser(), value, coor);
-  v_orig = m.getParser().getVertexs();
+  f.Scale(value, coor);
+  v_orig = f.getVertexes();
 
   size_t i = coor;
   if (coor == kAll) {
@@ -506,17 +508,17 @@ TEST(Affine, affine_scaling_plus_y) {
 TEST(Affine, affine_scaling_plus_z) {
   coordinate_t coor = kZ;
   std::vector<double> v_copy;
-  s21::Model m;
+  s21::Controller f;
   double value = 2;
   bool res = true;
 
-  m.getParser().Parse(cube);
-  std::vector<double> v_orig = m.getParser().getVertexs();
+  f.Parse(cube);
+  std::vector<double> v_orig = f.getVertexes();
   for (size_t i = 0; i < v_orig.size(); i++) {
     v_copy.push_back(v_orig.at(i));
   }
-  m.getAffine().Scaling(&m.getParser(), value, coor);
-  v_orig = m.getParser().getVertexs();
+  f.Scale(value, coor);
+  v_orig = f.getVertexes();
 
   size_t i = coor;
   if (coor == kAll) {
@@ -542,17 +544,17 @@ TEST(Affine, affine_scaling_plus_z) {
 TEST(Affine, affine_scaling_minus_x) {
   coordinate_t coor = kX;
   std::vector<double> v_copy;
-  s21::Model m;
+  s21::Controller f;
   double value = -2;
   bool res = true;
 
-  m.getParser().Parse(cube);
-  std::vector<double> v_orig = m.getParser().getVertexs();
+  f.Parse(cube);
+  std::vector<double> v_orig = f.getVertexes();
   for (size_t i = 0; i < v_orig.size(); i++) {
     v_copy.push_back(v_orig.at(i));
   }
-  m.getAffine().Scaling(&m.getParser(), value, coor);
-  v_orig = m.getParser().getVertexs();
+  f.Scale(value, coor);
+  v_orig = f.getVertexes();
 
   size_t i = coor;
   if (coor == kAll) {
@@ -578,17 +580,17 @@ TEST(Affine, affine_scaling_minus_x) {
 TEST(Affine, affine_scaling_minus_y) {
   coordinate_t coor = kY;
   std::vector<double> v_copy;
-  s21::Model m;
+  s21::Controller f;
   double value = -2;
   bool res = true;
 
-  m.getParser().Parse(cube);
-  std::vector<double> v_orig = m.getParser().getVertexs();
+  f.Parse(cube);
+  std::vector<double> v_orig = f.getVertexes();
   for (size_t i = 0; i < v_orig.size(); i++) {
     v_copy.push_back(v_orig.at(i));
   }
-  m.getAffine().Scaling(&m.getParser(), value, coor);
-  v_orig = m.getParser().getVertexs();
+  f.Scale(value, coor);
+  v_orig = f.getVertexes();
 
   size_t i = coor;
   if (coor == kAll) {
@@ -614,17 +616,17 @@ TEST(Affine, affine_scaling_minus_y) {
 TEST(Affine, affine_scaling_minus_z) {
   coordinate_t coor = kZ;
   std::vector<double> v_copy;
-  s21::Model m;
+  s21::Controller f;
   double value = -2;
   bool res = true;
 
-  m.getParser().Parse(cube);
-  std::vector<double> v_orig = m.getParser().getVertexs();
+  f.Parse(cube);
+  std::vector<double> v_orig = f.getVertexes();
   for (size_t i = 0; i < v_orig.size(); i++) {
     v_copy.push_back(v_orig.at(i));
   }
-  m.getAffine().Scaling(&m.getParser(), value, coor);
-  v_orig = m.getParser().getVertexs();
+  f.Scale(value, coor);
+  v_orig = f.getVertexes();
 
   size_t i = coor;
   if (coor == kAll) {
@@ -646,7 +648,6 @@ TEST(Affine, affine_scaling_minus_z) {
   }
   EXPECT_EQ(res, true);
 }
-
 int main(int argc, char* argv[]) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();

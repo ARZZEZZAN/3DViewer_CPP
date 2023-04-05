@@ -4,7 +4,7 @@
 # Object files
 *.o
 *.ko
-*.obj
+# *.obj
 *.elf
 
 # Linker output
@@ -51,3 +51,5 @@ Module.symvers
 Mkfile.old
 dkms.conf
 .vscode/
+.DS_Store
+../.DS_Store

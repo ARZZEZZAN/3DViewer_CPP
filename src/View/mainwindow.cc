@@ -58,9 +58,9 @@ void MainWindow::on_pushButton_select_name_clicked() {
 void MainWindow::InitFile(std::string path) {
   controller_.Parse(path);
   maxCoord_ = controller_.getMaxCoordinate() * 1.5;
-  ui_->label_info_v->setNum(int(controller_.CountV()));
-  ui_->label_info_e->setNum(int(controller_.CountE()));
-  ui_->label_info_p->setNum(int(controller_.CountP()));
+  ui_->label_info_v->setNum(int(controller_.getCountVertexes()));
+  ui_->label_info_e->setNum(int(controller_.getCountEdges()));
+  ui_->label_info_p->setNum(int(controller_.getCountPolygons()));
   update();
 }
 
@@ -112,7 +112,7 @@ void MainWindow::SetupPerspective() {
 }
 
 void MainWindow::Draw() {
-  glVertexPointer(3, GL_DOUBLE, 0, controller_.getVertexs().data());
+  glVertexPointer(3, GL_DOUBLE, 0, controller_.getVertexes().data());
   glEnableClientState(GL_VERTEX_ARRAY);
   glClearColor(bgrClrR_, bgrClrG_, bgrClrB_, 0.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -140,10 +140,10 @@ void MainWindow::Draw() {
 
     if (ui_->radioButton_circles->isChecked()) {
       glEnable(GL_POINT_SMOOTH);
-      glDrawArrays(GL_POINTS, 0, controller_.CountV());
+      glDrawArrays(GL_POINTS, 0, controller_.getCountVertexes());
       glDisable(GL_POINT_SMOOTH);
     } else if (ui_->radioButton_quads->isChecked()) {
-      glDrawArrays(GL_POINTS, 0, controller_.CountV());
+      glDrawArrays(GL_POINTS, 0, controller_.getCountVertexes());
     }
 
     glDisable(GL_POINT_SMOOTH);
@@ -165,7 +165,7 @@ void MainWindow::on_pushButton_save_settings_clicked() { SaveSettings(); }
 
 void MainWindow::wheelEvent(QWheelEvent* event) {
   double value = 1 + event->angleDelta().y() / 940.0;
-  controller_.Scaling(value, kAll);
+  controller_.Scale(value, kAll);
   update();
 }
 
@@ -174,7 +174,7 @@ void MainWindow::on_verticalScrollBar_valueChanged(int value) {
 }
 
 void MainWindow::on_verticalScrollBar_sliderReleased() {
-  controller_.Scaling(qvalue_, kAll);
+  controller_.Scale(qvalue_, kAll);
   ui_->verticalScrollBar->setValue(0);
   update();
 }

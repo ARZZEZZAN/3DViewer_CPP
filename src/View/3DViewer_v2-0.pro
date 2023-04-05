@@ -14,6 +14,8 @@ SOURCES += \
     ../main.cc \
     ../Model/Parser/parser.cc \
     ../Model/Affine/affine.cc \
+    ../Model/Facade/facade.cc \
+    ../Model/Figure/figure.cc \
     ../Controller/controller.cc \
     StrategyActions/strategyActions.cc \
     Command/command.cc \
@@ -23,6 +25,8 @@ HEADERS += \
     ../Model/model.h \
     ../Model/Parser/parser.h \
     ../Model/Affine/affine.h \
+    ../Model/Facade/facade.h \
+    ../Model/Figure/figure.h \
     ../Controller/controller.h \
     StrategyActions/strategyActions.h \
     Command/command.h \
