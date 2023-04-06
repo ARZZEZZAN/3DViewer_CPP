@@ -5,7 +5,7 @@ namespace s21 {
 class Controller {
  public:
   // Parser
-  void Parse(const std::string& fileName);
+  void Parse(const std::string &fileName);
 
   // Affine
   void Move(double move, Operation role);
@@ -15,8 +15,8 @@ class Controller {
   // Figure
   void Remove();
 
-  std::vector<double> getVertexes() const;
-  std::vector<int> getFacets() const;
+  const std::vector<double> &getVertexes();
+  const std::vector<int> &getFacets();
   int getCountVertexes() const;
   int getCountEdges() const;
   int getCountPolygons() const;

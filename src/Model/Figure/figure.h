@@ -7,10 +7,11 @@ namespace s21 {
 class Figure {
  public:
   Figure();
+  Figure& operator=(Figure&& other) noexcept;
   void Clear();
 
-  std::vector<double> getVertexes() const;
-  std::vector<int> getFacets() const;
+  const std::vector<double>& getVertexes();
+  const std::vector<int>& getFacets();
   int getCountVertexes() const;
   int getCountEdges() const;
   int getCountPolygons() const;

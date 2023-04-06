@@ -2,7 +2,8 @@
 
 namespace s21 {
 Facade::Facade() {
-  strategies_ = {new RotateStrategy(figure_, affine_), new MoveStrategy(figure_, affine_),
+  strategies_ = {new RotateStrategy(figure_, affine_),
+                 new MoveStrategy(figure_, affine_),
                  new ScaleStrategy(figure_, affine_)};
 }
 Facade::~Facade() {
@@ -30,10 +31,10 @@ void Facade::Scale(double scale, Operation role) {
 // Figure
 void Facade::Clear() { figure_.Clear(); }
 
-std::vector<double> Facade::getVertexes() const {
+const std::vector<double>& Facade::getVertexes() {
   return figure_.getVertexes();
 }
-std::vector<int> Facade::getFacets() const { return figure_.getFacets(); }
+const std::vector<int>& Facade::getFacets() { return figure_.getFacets(); }
 int Facade::getCountVertexes() const { return figure_.getCountVertexes(); }
 int Facade::getCountEdges() const { return figure_.getCountEdges(); }
 int Facade::getCountPolygons() const { return figure_.getCountPolygons(); }

@@ -1,21 +1,20 @@
 #include "parser.h"
 namespace s21 {
 
-void Parser::Parse(const std::string& fileName, s21::Figure& figure) {
+void Parser::Parse(const std::string& fileName, Figure& figure) {
   std::ifstream file(fileName);
-  figure_.Clear();
+  figure.Clear();
   if (file.is_open() && strcmp(&fileName[fileName.size() - 3], ".obj")) {
     std::string fileLine;
     while (std::getline(file, fileLine)) {
       if (ParseConditions(fileLine, 'v')) {
-        ParseVertexes(fileLine);
+        ParseVertexes(fileLine, figure);
       } else if (ParseConditions(fileLine, 'f')) {
-        ParseFacets(fileLine);
+        ParseFacets(fileLine, figure);
       }
     }
   }
-  figure_.setCountEdges(ParseEdges(figure_.getFacets()));
-  figure = std::move(figure_);
+  figure.setCountEdges(ParseEdges(figure.getFacets()));
 }
 
 bool Parser::ParseConditions(std::string& fileLine, char type) {
@@ -32,28 +31,28 @@ bool Parser::ParseConditions(std::string& fileLine, char type) {
   return success;
 }
 
-void Parser::ParseVertexes(std::string& fileLine) {
+void Parser::ParseVertexes(std::string& fileLine, Figure& figure) {
   std::vector<double> vec = ParseLine(fileLine);
-  std::vector<double> tmp = figure_.getVertexes();
+  std::vector<double> tmp = figure.getVertexes();
   for (size_t i = 0; i < 3; i++) {
     if (i < vec.size()) {
       tmp.push_back(vec.at(i));
     } else {
       tmp.push_back(0);
     }
-    if (fabs(vec.at(i)) > fabs(figure_.getMaxCoordinate())) {
-      figure_.setMaxCoordinate(fabs(vec.at(i)));
+    if (fabs(vec.at(i)) > fabs(figure.getMaxCoordinate())) {
+      figure.setMaxCoordinate(fabs(vec.at(i)));
     }
   }
   if (!vec.empty()) {
-    figure_.setCountVertexes(figure_.getCountVertexes() + 1);
+    figure.setCountVertexes(figure.getCountVertexes() + 1);
   }
-  figure_.setVertexes(tmp);
+  figure.setVertexes(tmp);
 }
 
-void Parser::ParseFacets(std::string& fileLine) {
+void Parser::ParseFacets(std::string& fileLine, Figure& figure) {
   std::vector<double> vec = ParseLine(fileLine);
-  std::vector<int> tmp = figure_.getFacets();
+  std::vector<int> tmp = figure.getFacets();
 
   if (!vec.empty()) {
     tmp.push_back(vec.at(0) - 1);
@@ -62,9 +61,9 @@ void Parser::ParseFacets(std::string& fileLine) {
       tmp.push_back(vec.at(i) - 1);
     }
     tmp.push_back(vec.at(0) - 1);
-    figure_.setCountPolygons(figure_.getCountPolygons() + 1);
+    figure.setCountPolygons(figure.getCountPolygons() + 1);
   }
-  figure_.setFacets(tmp);
+  figure.setFacets(tmp);
 }
 
 int Parser::ParseEdges(const std::vector<int>& vec) {

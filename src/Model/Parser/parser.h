@@ -18,14 +18,14 @@ typedef std::pair<int, int> Pairs;
 namespace s21 {
 class Parser {
  public:
-  void Parse(const std::string& fileName, s21::Figure& figure);
+  void Parse(const std::string& fileName, Figure& figure);
 
  private:
-  s21::Figure figure_;
+  Figure figure_;
 
   bool ParseConditions(std::string& fileLine, char type);
-  void ParseVertexes(std::string& fileLine);
-  void ParseFacets(std::string& fileLine);
+  void ParseVertexes(std::string& fileLine, Figure& figure);
+  void ParseFacets(std::string& fileLine, Figure& figure);
   int ParseEdges(const std::vector<int>& vec);
   std::vector<double> ParseLine(std::string& fileLine);
   void DelSpace(std::string& fileLine);
