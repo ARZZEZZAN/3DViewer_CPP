@@ -18,17 +18,25 @@ typedef std::pair<int, int> Pairs;
 namespace s21 {
 class Parser {
  public:
+  Parser();
   void Parse(const std::string& fileName, Figure& figure);
 
  private:
-  Figure figure_;
+  std::vector<double> vertexes_;
+  std::vector<int> facets_;
+  int countVertexes_;
+  int countPolygons_;
+  double maxCoordinate_;
+
+  void setFigure(Figure& figure);
 
   bool ParseConditions(std::string& fileLine, char type);
-  void ParseVertexes(std::string& fileLine, Figure& figure);
-  void ParseFacets(std::string& fileLine, Figure& figure);
-  int ParseEdges(const std::vector<int>& vec);
+  void ParseVertexes(std::string& fileLine);
+  void ParseFacets(std::string& fileLine);
+  int ParseEdges();
   std::vector<double> ParseLine(std::string& fileLine);
   void DelSpace(std::string& fileLine);
+  void Clear();
 };
 }  // namespace s21
 

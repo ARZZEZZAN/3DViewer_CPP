@@ -19,19 +19,14 @@ class Facade {
   Facade();
   ~Facade();
 
-  //  Parser
   void Parse(const std::string& fileName);
-
-  // Affine
   void Move(double move, Operation role);
   void Transform(double angle, Operation role);
   void Scale(double scale, Operation role);
-
-  // Figure
   void Clear();
 
-  std::vector<double>& getVertexes();
-  std::vector<int>& getFacets();
+  const std::vector<double>& getVertexes();
+  const std::vector<int>& getFacets();
   int getCountVertexes() const;
   int getCountEdges() const;
   int getCountPolygons() const;

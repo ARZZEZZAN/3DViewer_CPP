@@ -1,33 +1,22 @@
 #include "parser.h"
 
-#include <time.h>
-clock_t Parse1;
-clock_t Parse2;
-clock_t Parse3;
-clock_t Parse4;
-
 namespace s21 {
+Parser::Parser() : countVertexes_(0), countPolygons_(0), maxCoordinate_(0) {}
+
 void Parser::Parse(const std::string& fileName, Figure& figure) {
   std::ifstream file(fileName);
-  figure.Clear();
+  Clear();
   if (file.is_open() && strcmp(&fileName[fileName.size() - 3], ".obj")) {
     std::string fileLine;
     while (std::getline(file, fileLine)) {
       if (ParseConditions(fileLine, 'v')) {
-        ParseVertexes(fileLine, figure);
+        ParseVertexes(fileLine);
       } else if (ParseConditions(fileLine, 'f')) {
-        ParseFacets(fileLine, figure);
+        ParseFacets(fileLine);
       }
     }
-    Parse2 = clock();
   }
-  std::cout << "Parse: " << ((double)(Parse2 - Parse1) / CLOCKS_PER_SEC)
-            << std::endl;
-  Parse3 = clock();
-  figure.setCountEdges(ParseEdges(figure.getFacets()));
-  Parse4 = clock();
-  std::cout << "ParseEdges: " << ((double)(Parse4 - Parse3) / CLOCKS_PER_SEC)
-            << std::endl;
+  setFigure(figure);
 }
 
 bool Parser::ParseConditions(std::string& fileLine, char type) {
@@ -44,48 +33,44 @@ bool Parser::ParseConditions(std::string& fileLine, char type) {
   return success;
 }
 
-void Parser::ParseVertexes(std::string& fileLine, Figure& figure) {
+void Parser::ParseVertexes(std::string& fileLine) {
   std::vector<double> vec = ParseLine(fileLine);
-  std::vector<double> tmp = figure.getVertexes();
   for (size_t i = 0; i < 3; i++) {
     if (i < vec.size()) {
-      tmp.push_back(vec.at(i));
+      vertexes_.push_back(vec.at(i));
     } else {
-      tmp.push_back(0);
+      vertexes_.push_back(0);
     }
-    if (fabs(vec.at(i)) > fabs(figure.getMaxCoordinate())) {
-      figure.setMaxCoordinate(fabs(vec.at(i)));
+    double mc = fabs(vec.at(i));
+    if (mc > fabs(maxCoordinate_)) {
+      maxCoordinate_ = mc;
     }
   }
   if (!vec.empty()) {
-    figure.setCountVertexes(figure.getCountVertexes() + 1);
+    countVertexes_++;
   }
-  figure.setVertexes(tmp);
 }
 
-void Parser::ParseFacets(std::string& fileLine, Figure& figure) {
+void Parser::ParseFacets(std::string& fileLine) {
   std::vector<double> vec = ParseLine(fileLine);
-  std::vector<int> tmp = figure.getFacets();
-
   if (!vec.empty()) {
-    tmp.push_back(vec.at(0) - 1);
+    facets_.push_back(vec.at(0) - 1);
     for (size_t i = 1; i < vec.size(); i++) {
-      tmp.push_back(vec.at(i) - 1);
-      tmp.push_back(vec.at(i) - 1);
+      facets_.push_back(vec.at(i) - 1);
+      facets_.push_back(vec.at(i) - 1);
     }
-    tmp.push_back(vec.at(0) - 1);
-    figure.setCountPolygons(figure.getCountPolygons() + 1);
+    facets_.push_back(vec.at(0) - 1);
+    countPolygons_++;
   }
-  figure.setFacets(tmp);
 }
 
-int Parser::ParseEdges(const std::vector<int>& vec) {
+int Parser::ParseEdges() {
   std::set<Pairs> edges;
-  for (size_t i = 1; i < vec.size(); i++) {
+  for (size_t i = 1; i < facets_.size(); i++) {
     if ((i + 1) % 2 == 0) {
-      Pairs edge = std::make_pair(vec.at(i - 1), vec.at(i));
+      Pairs edge = std::make_pair(facets_.at(i - 1), facets_.at(i));
       edges.insert(edge);
-      Pairs edgeMirror = std::make_pair(vec.at(i), vec.at(i - 1));
+      Pairs edgeMirror = std::make_pair(facets_.at(i), facets_.at(i - 1));
       edges.erase(edgeMirror);
     }
   }
@@ -114,4 +99,22 @@ void Parser::DelSpace(std::string& fileLine) {
     fileLine.erase(fileLine.begin());
   }
 }
+
+void Parser::setFigure(Figure& figure) {
+  figure.setFacets(facets_);
+  figure.setVertexes(vertexes_);
+  figure.setCountEdges(ParseEdges());
+  figure.setCountPolygons(countPolygons_);
+  figure.setCountVertexes(countVertexes_);
+  figure.setMaxCoordinate(maxCoordinate_);
+}
+
+void Parser::Clear() {
+  vertexes_.clear();
+  facets_.clear();
+  countVertexes_ = 0;
+  countPolygons_ = 0;
+  maxCoordinate_ = 0;
+}
+
 }  // namespace s21
