@@ -7,7 +7,7 @@ Facade::Facade() {
                  new ScaleStrategy(figure_, affine_)};
 }
 Facade::~Facade() {
-  for (auto strategy : strategies_) {  // TODO move to backend
+  for (auto strategy : strategies_) {
     delete strategy;
   }
 }

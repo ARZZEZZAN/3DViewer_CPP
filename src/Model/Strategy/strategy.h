@@ -33,13 +33,13 @@ class Strategy {
 
 class RotateStrategy : public Strategy {
  public:
-  RotateStrategy(Figure& figure, Affine& affine);  // TODO mb change
+  RotateStrategy(Figure& figure, Affine& affine);
   void Execute(Operation role, double value) override;
 
  private:
   double value_;
   Figure& figure_;
-  Affine& affine_;  // TODO delete
+  Affine& affine_;
   void RotateXSlider();
   void RotateYSlider();
   void RotateZSlider();
@@ -53,7 +53,7 @@ class MoveStrategy : public Strategy {
  private:
   double value_;
   Figure& figure_;
-  Affine& affine_;  // TODO delete
+  Affine& affine_;
   void MoveXPlus();
   void MoveXMinus();
   void MoveYPlus();
@@ -70,7 +70,7 @@ class ScaleStrategy : public Strategy {
  private:
   double value_;
   Figure& figure_;
-  Affine& affine_;  // TODO delete
+  Affine& affine_;
   void ScalePlusX();
   void ScaleMinusX();
   void ScalePlusY();
