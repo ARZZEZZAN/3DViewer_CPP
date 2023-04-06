@@ -30,8 +30,8 @@ class Facade {
   // Figure
   void Clear();
 
-  const std::vector<double>& getVertexes();
-  const std::vector<int>& getFacets();
+  std::vector<double>& getVertexes();
+  std::vector<int>& getFacets();
   int getCountVertexes() const;
   int getCountEdges() const;
   int getCountPolygons() const;

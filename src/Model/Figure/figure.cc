@@ -33,8 +33,8 @@ void Figure::Clear() {
   maxCoordinate_ = 0;
 }
 
-const std::vector<double>& Figure::getVertexes() { return vertexes_; }
-const std::vector<int>& Figure::getFacets() { return facets_; }
+std::vector<double>& Figure::getVertexes() { return vertexes_; }
+std::vector<int>& Figure::getFacets() { return facets_; }
 int Figure::getCountVertexes() const { return countVertexes_; }
 int Figure::getCountEdges() const { return countEdges_; }
 int Figure::getCountPolygons() const { return countPolygons_; }

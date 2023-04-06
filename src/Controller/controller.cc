@@ -16,10 +16,8 @@ void Controller::Scale(double scale, Operation role) {
 // Figure
 void Controller::Remove() { facade_.Clear(); }
 
-const std::vector<double>& Controller::getVertexes() {
-  return facade_.getVertexes();
-}
-const std::vector<int>& Controller::getFacets() { return facade_.getFacets(); }
+std::vector<double>& Controller::getVertexes() { return facade_.getVertexes(); }
+std::vector<int>& Controller::getFacets() { return facade_.getFacets(); }
 int Controller::getCountVertexes() const { return facade_.getCountVertexes(); }
 int Controller::getCountEdges() const { return facade_.getCountEdges(); }
 int Controller::getCountPolygons() const { return facade_.getCountPolygons(); }

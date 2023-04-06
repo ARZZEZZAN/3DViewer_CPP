@@ -1,6 +1,12 @@
 #include "parser.h"
-namespace s21 {
 
+#include <time.h>
+clock_t Parse1;
+clock_t Parse2;
+clock_t Parse3;
+clock_t Parse4;
+
+namespace s21 {
 void Parser::Parse(const std::string& fileName, Figure& figure) {
   std::ifstream file(fileName);
   figure.Clear();
@@ -13,8 +19,15 @@ void Parser::Parse(const std::string& fileName, Figure& figure) {
         ParseFacets(fileLine, figure);
       }
     }
+    Parse2 = clock();
   }
+  std::cout << "Parse: " << ((double)(Parse2 - Parse1) / CLOCKS_PER_SEC)
+            << std::endl;
+  Parse3 = clock();
   figure.setCountEdges(ParseEdges(figure.getFacets()));
+  Parse4 = clock();
+  std::cout << "ParseEdges: " << ((double)(Parse4 - Parse3) / CLOCKS_PER_SEC)
+            << std::endl;
 }
 
 bool Parser::ParseConditions(std::string& fileLine, char type) {

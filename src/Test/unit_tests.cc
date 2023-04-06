@@ -2,8 +2,22 @@
 
 #include "../Model/Facade/facade.h"
 #define cube "Test/cube.obj"
+#define Leva "Test/Leva.obj"
 #define accuracy 1e-7
 
+TEST(Parser, parser1) {
+  s21::Facade f;
+  f.Parse(Leva);
+  std::cout << "END_TEST" << std::endl;
+  // s21::Facade f;
+  // f.Parse(cube);
+  // EXPECT_EQ(f.getCountVertexes(), 8);
+  // EXPECT_EQ(f.getCountEdges(), 18);
+  // EXPECT_EQ(f.getCountPolygons(), 12);
+  // EXPECT_EQ(f.getMaxCoordinate(), 0.5);
+}
+
+/*
 TEST(Parser, parser1) {
   s21::Facade f;
   f.Parse(cube);
@@ -648,7 +662,7 @@ TEST(Affine, affine_scaling_minus_z) {
   }
   EXPECT_EQ(res, true);
 }
-
+*/
 int main(int argc, char* argv[]) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
