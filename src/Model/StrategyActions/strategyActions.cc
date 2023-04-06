@@ -7,7 +7,7 @@ RotateStrategy::RotateStrategy(Figure& figure, Affine& affine)
     : figure_(figure), affine_(affine) {}
 
 void RotateStrategy::Execute(Operation role, double value) {
-  value_ = value;
+  value_ = value / 36.0;
   switch (role) {
     case kRotSliderX:
       RotateXSlider();
@@ -89,8 +89,11 @@ void ScaleStrategy::Execute(Operation role, double value) {
     case kScaleMinusZ:
       ScaleMinusZ();
       break;
-    case kScaleAll:
-      ScaleAll();
+    case kScaleMouseAll:
+      ScaleMouseAll();
+      break;
+    case kScaleScrollAll:
+      ScaleScrollAll();
       break;
     default:
       break;
@@ -106,8 +109,13 @@ void ScaleStrategy::ScaleMinusY() { affine_.Scale(figure_, 1 - value_, kY); }
 void ScaleStrategy::ScalePlusZ() { affine_.Scale(figure_, 1 + value_, kZ); }
 void ScaleStrategy::ScaleMinusZ() { affine_.Scale(figure_, 1 - value_, kZ); }
 
-void ScaleStrategy::ScaleAll() {
+void ScaleStrategy::ScaleMouseAll() {
   double value = 1 + value_ / 940.0;
+  affine_.Scale(figure_, value, kAll);
+}
+
+void ScaleStrategy::ScaleScrollAll() {
+  double value = 1 + value_ * -1 / 2500.0;
   affine_.Scale(figure_, value, kAll);
 }
 

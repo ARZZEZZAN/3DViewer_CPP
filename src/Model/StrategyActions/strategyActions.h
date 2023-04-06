@@ -21,7 +21,8 @@ enum Operation {
   kScaleMinusY,
   kScalePlusZ,
   kScaleMinusZ,
-  kScaleAll
+  kScaleMouseAll,
+  kScaleScrollAll
 };
 
 class Strategy {
@@ -76,7 +77,8 @@ class ScaleStrategy : public Strategy {
   void ScaleMinusY();
   void ScalePlusZ();
   void ScaleMinusZ();
-  void ScaleAll();
+  void ScaleMouseAll();
+  void ScaleScrollAll();
 };
 }  // namespace s21
 

@@ -147,10 +147,10 @@ class MainWindow : public QOpenGLWidget {
 
  private:
   QString file_;
-  int value_; // TODO mb delete
+  double value_;  // TODO mb delete
   float xRot_, yRot_, zRot_;
   float lastPosX_, lastPosY_;
-  double rotValueX_, rotValueY_, rotValueZ_, qValue_; // TODO mb delete qValue
+  double rotValueX_, rotValueY_, rotValueZ_, qValue_;  // TODO mb delete qValue
   double bgrClrR_, bgrClrG_, bgrClrB_;
   double edgClrR_, edgClrG_, edgClrB_;
   double vertClrR_, vertClrG_, vertClrB_;

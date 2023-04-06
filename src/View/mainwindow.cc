@@ -161,16 +161,16 @@ void MainWindow::on_spinBox_edges_size_valueChanged() { update(); }
 void MainWindow::on_pushButton_save_settings_clicked() { SaveSettings(); }
 
 void MainWindow::wheelEvent(QWheelEvent* event) {
-  controller_.Scale(event->angleDelta().y(), kScaleAll);
+  controller_.Scale(event->angleDelta().y(), kScaleMouseAll);
   update();
 }
 
 void MainWindow::on_verticalScrollBar_valueChanged(int value) {
-  qValue_ = (1 + value * -1 / 2500.0);
+  qValue_ = value;
 }
 
 void MainWindow::on_verticalScrollBar_sliderReleased() {
-  controller_.Scale(qValue_, kScaleAll);
+  controller_.Scale(qValue_, kScaleScrollAll);
   ui_->verticalScrollBar->setValue(0);
   update();
 }
@@ -238,7 +238,7 @@ void MainWindow::on_pushButton_sc_z_minus_clicked() {
 
 // Rotate
 void MainWindow::on_horizontalScrollBar_rot_x_valueChanged(int value) {
-  value_ = value / 36.0;
+  value_ = value;
 }
 void MainWindow::on_horizontalScrollBar_rot_x_sliderReleased() {
   controller_.Transform(value_, kRotSliderX);
@@ -246,7 +246,7 @@ void MainWindow::on_horizontalScrollBar_rot_x_sliderReleased() {
   update();
 }
 void MainWindow::on_horizontalScrollBar_rot_y_valueChanged(int value) {
-  value_ = value / 36.0;
+  value_ = value;
 }
 void MainWindow::on_horizontalScrollBar_rot_y_sliderReleased() {
   controller_.Transform(value_, kRotSliderY);
@@ -254,7 +254,7 @@ void MainWindow::on_horizontalScrollBar_rot_y_sliderReleased() {
   update();
 }
 void MainWindow::on_horizontalScrollBar_rot_z_valueChanged(int value) {
-  value_ = value / 36.0;
+  value_ = value;
 }
 void MainWindow::on_horizontalScrollBar_rot_z_sliderReleased() {
   controller_.Transform(value_, kRotSliderZ);
@@ -264,27 +264,27 @@ void MainWindow::on_horizontalScrollBar_rot_z_sliderReleased() {
 
 // Move
 void MainWindow::on_pushButton_mv_x_plus_clicked() {
-  controller_.Move(value_, kMovePlusX);
+  controller_.Move(ui_->doubleSpinBox_mv_value->value(), kMovePlusX);
   update();
 }
 void MainWindow::on_pushButton_mv_x_minus_clicked() {
-  controller_.Move(value_, kMoveMinusX);
+  controller_.Move(ui_->doubleSpinBox_mv_value->value(), kMoveMinusX);
   update();
 }
 void MainWindow::on_pushButton_mv_y_plus_clicked() {
-  controller_.Move(value_, kMovePlusY);
+  controller_.Move(ui_->doubleSpinBox_mv_value->value(), kMovePlusY);
   update();
 }
 void MainWindow::on_pushButton_mv_y_minus_clicked() {
-  controller_.Move(value_, kMoveMinusY);
+  controller_.Move(ui_->doubleSpinBox_mv_value->value(), kMoveMinusY);
   update();
 }
 void MainWindow::on_pushButton_mv_z_plus_clicked() {
-  controller_.Move(value_, kMovePlusZ);
+  controller_.Move(ui_->doubleSpinBox_mv_value->value(), kMovePlusZ);
   update();
 }
 void MainWindow::on_pushButton_mv_z_minus_clicked() {
-  controller_.Move(value_, kMoveMinusZ);
+  controller_.Move(ui_->doubleSpinBox_mv_value->value(), kMoveMinusZ);
   update();
 }
 
