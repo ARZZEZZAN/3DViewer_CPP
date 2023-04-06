@@ -40,7 +40,6 @@ class Facade {
   void setMaxCoordinate(double maxCoordinate);
 
  private:
-  // int value_;
   Parser parser_;
   Affine affine_;
   Figure figure_;

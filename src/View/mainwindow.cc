@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget* parent)
 MainWindow::~MainWindow() {
   delete gifTmr_;
   controller_.Remove();
+  delete settings_;
   delete ui_;
 }
 
@@ -70,9 +71,8 @@ void MainWindow::on_pushButton_reset_clicked() {
 }
 
 void MainWindow::mousePressEvent(QMouseEvent* mo) {
-  mPos_ = mo->pos();
-  lastPosX_ = mPos_.x();
-  lastPosY_ = mPos_.y();
+  lastPosX_ = mo->pos().x();
+  lastPosY_ = mo->pos().y();
 }
 
 void MainWindow::mouseMoveEvent(QMouseEvent* mo) {
@@ -166,11 +166,11 @@ void MainWindow::wheelEvent(QWheelEvent* event) {
 }
 
 void MainWindow::on_verticalScrollBar_valueChanged(int value) {
-  qValue_ = value;
+  value_ = value;
 }
 
 void MainWindow::on_verticalScrollBar_sliderReleased() {
-  controller_.Scale(qValue_, kScaleScrollAll);
+  controller_.Scale(value_, kScaleScrollAll);
   ui_->verticalScrollBar->setValue(0);
   update();
 }
@@ -416,27 +416,6 @@ void MainWindow::LoadSettings() {
   ui_->horizontalScrollBar_vertexes_B->setValue(
       settings_->value("horizontalScrollBar_vertexes_B").toInt());
 }
-
-// s21::Controller& MainWindow::getController() { return controller_; } // TODO
-// delete Ui::MainWindow* MainWindow::getUi() { return ui_; } // TODO delete
-
-int MainWindow::getValue() const { return value_; }
-
-double MainWindow::getRotValueX() const { return rotValueX_; }
-double MainWindow::getRotValueY() const { return rotValueY_; }
-double MainWindow::getRotValueZ() const { return rotValueZ_; }
-
-double MainWindow::getBgrClrR() const { return bgrClrR_; }
-double MainWindow::getBgrClrG() const { return bgrClrG_; }
-double MainWindow::getBgrClrB() const { return bgrClrB_; }
-
-double MainWindow::getEdgClrR() const { return edgClrR_; }
-double MainWindow::getEdgClrG() const { return edgClrG_; }
-double MainWindow::getEdgClrB() const { return edgClrB_; }
-
-void MainWindow::setRotValueX(double rotValueX) { rotValueX_ = rotValueX; }
-void MainWindow::setRotValueY(double rotValueY) { rotValueY_ = rotValueY; }
-void MainWindow::setRotValueZ(double rotValueZ) { rotValueZ_ = rotValueZ; }
 
 void MainWindow::setBgrClrR(double bgrClrR) { bgrClrR_ = bgrClrR; }
 void MainWindow::setBgrClrG(double bgrClrG) { bgrClrG_ = bgrClrG; }

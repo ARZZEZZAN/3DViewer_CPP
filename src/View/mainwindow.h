@@ -33,8 +33,6 @@ class MainWindow;
 }
 
 namespace s21 {
-// class Command;   // TODO delete
-// class Strategy;  // TODO delete
 
 QT_END_NAMESPACE
 
@@ -57,31 +55,8 @@ class MainWindow : public QOpenGLWidget {
   void paintGL() override;
   void wheelEvent(QWheelEvent *event) override;
 
-  // Ui::MainWindow *getUi(); // TODO delete
-  // s21::Controller &getController(); // TODO delete
-
   void SaveSettings();
   void LoadSettings();
-
-  void CommandActionEvent(Command *command, Operation operation);
-
-  int getValue() const;  // TODO Check mb delete
-
-  double getRotValueX() const;
-  double getRotValueY() const;
-  double getRotValueZ() const;
-
-  double getBgrClrR() const;
-  double getBgrClrG() const;
-  double getBgrClrB() const;
-
-  double getEdgClrR() const;
-  double getEdgClrG() const;
-  double getEdgClrB() const;
-
-  void setRotValueX(double rotValueX);
-  void setRotValueY(double rotValueY);
-  void setRotValueZ(double rotValueZ);
 
   void setBgrClrR(double bgrClrR);
   void setBgrClrG(double bgrClrG);
@@ -147,19 +122,15 @@ class MainWindow : public QOpenGLWidget {
 
  private:
   QString file_;
-  double value_;  // TODO mb delete
+  double value_;
   float xRot_, yRot_, zRot_;
   float lastPosX_, lastPosY_;
-  double rotValueX_, rotValueY_, rotValueZ_, qValue_;  // TODO mb delete qValue
   double bgrClrR_, bgrClrG_, bgrClrB_;
   double edgClrR_, edgClrG_, edgClrB_;
   double vertClrR_, vertClrG_, vertClrB_;
 
   void SetColor(double value, void (MainWindow::*setFunc)(double),
                 QSpinBox *spinBox);
-
-  QPoint mPos_;
-  QImage image_;
 
   Ui::MainWindow *ui_;
   s21::Controller controller_;
