@@ -56,9 +56,9 @@ void MainWindow::on_pushButton_select_name_clicked() {
 void MainWindow::InitFile(std::string path) {
   controller_.Parse(path);
   maxCoord_ = controller_.getMaxCoordinate() * 1.5;
-  ui_->label_info_v->setNum(int(controller_.getCountVertexes()));
-  ui_->label_info_e->setNum(int(controller_.getCountEdges()));
-  ui_->label_info_p->setNum(int(controller_.getCountPolygons()));
+  ui_->label_info_v->setNum(static_cast<int>(controller_.getCountVertexes()));
+  ui_->label_info_e->setNum(static_cast<int>(controller_.getCountEdges()));
+  ui_->label_info_p->setNum(static_cast<int>(controller_.getCountPolygons()));
   update();
 }
 
@@ -124,8 +124,8 @@ void MainWindow::Draw() {
     glEnable(GL_LINE_STIPPLE);
   }
   glLineWidth(ui_->spinBox_edges_size->value());
-  glDrawElements(GL_LINES, int(controller_.getFacets().size()), GL_UNSIGNED_INT,
-                 controller_.getFacets().data());
+  glDrawElements(GL_LINES, static_cast<int>(controller_.getFacets().size()),
+                 GL_UNSIGNED_INT, controller_.getFacets().data());
   glDisableClientState(GL_VERTEX_ARRAY);
 
   // Draw vertexes

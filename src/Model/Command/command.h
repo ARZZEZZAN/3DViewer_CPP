@@ -1,7 +1,7 @@
 #ifndef CPP4_3DVIEWER_V2_0_3_SRC_MODEL_COMMAND_COMMAND_H_
 #define CPP4_3DVIEWER_V2_0_3_SRC_MODEL_COMMAND_COMMAND_H_
 
-#include "../StrategyActions/strategyActions.h"
+#include "../Strategy/strategy.h"
 
 namespace s21 {
 class Command {

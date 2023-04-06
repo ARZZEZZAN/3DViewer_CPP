@@ -1,5 +1,5 @@
 
-#include "strategyActions.h"  // TODO rename strategyActions -> strategy
+#include "strategy.h"
 
 namespace s21 {
 // class RotateStrategy

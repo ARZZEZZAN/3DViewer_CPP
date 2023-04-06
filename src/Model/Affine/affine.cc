@@ -35,7 +35,7 @@ void Affine::Scale(Figure &figure, double scale, int coordinate) {
   if (coordinate == kAll) {
     i = 0;
   }
-  while (i < (int(figure.getCountVertexes()) * 3)) {
+  while (i < (static_cast<int>(figure.getCountVertexes()) * 3)) {
     tmp.at(i) *= scale;
     if (coordinate == kAll) {
       i++;
