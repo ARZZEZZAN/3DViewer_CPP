@@ -1,9 +1,9 @@
 
-#include "strategyActions.h"
+#include "strategyActions.h"  // TODO rename strategyActions -> strategy
 
 namespace s21 {
 // class RotateStrategy
-RotateStrategy::RotateStrategy(Figure figure, Affine affine)
+RotateStrategy::RotateStrategy(Figure& figure, Affine& affine)
     : figure_(figure), affine_(affine) {}
 
 void RotateStrategy::Execute(Operation role, double value) {
@@ -19,8 +19,6 @@ void RotateStrategy::Execute(Operation role, double value) {
       RotateZSlider();
       break;
     default:
-      throw std::invalid_argument(
-          "Pay attention for the type of operation");  // TODO mb delete
       break;
   }
 }
@@ -30,7 +28,7 @@ void RotateStrategy::RotateYSlider() { affine_.Transform(figure_, value_, kY); }
 void RotateStrategy::RotateZSlider() { affine_.Transform(figure_, value_, kZ); }
 
 // class MoveStrategy
-MoveStrategy::MoveStrategy(Figure figure, Affine affine)
+MoveStrategy::MoveStrategy(Figure& figure, Affine& affine)
     : figure_(figure), affine_(affine) {}
 
 void MoveStrategy::Execute(Operation role, double value) {
@@ -55,8 +53,6 @@ void MoveStrategy::Execute(Operation role, double value) {
       MoveZMinus();
       break;
     default:
-      throw std::invalid_argument(
-          "Pay attention for the type of operation");  // TODO delete
       break;
   }
 }
@@ -69,7 +65,7 @@ void MoveStrategy::MoveZPlus() { affine_.Move(figure_, value_, kZ); }
 void MoveStrategy::MoveZMinus() { affine_.Move(figure_, value_ * -1, kZ); }
 
 // class ScaleStrategy
-ScaleStrategy::ScaleStrategy(Figure figure, Affine affine)
+ScaleStrategy::ScaleStrategy(Figure& figure, Affine& affine)
     : figure_(figure), affine_(affine) {}
 
 void ScaleStrategy::Execute(Operation role, double value) {
@@ -94,52 +90,24 @@ void ScaleStrategy::Execute(Operation role, double value) {
       ScaleMinusZ();
       break;
     case kScaleAll:
-      ScaleMinusAll();
+      ScaleAll();
       break;
     default:
-      throw std::invalid_argument(
-          "Pay attention for the type of operation");  // TODO
       break;
   }
 }
 
-void ScaleStrategy::ScalePlusX() {
-  double value = 1 + value_;
-  affine_.Scale(figure_, value, kX);
-}
-void ScaleStrategy::ScaleMinusX() {
-  double value = 1 - value_;
-  if (value == 0) {
-    value = 0.1;
-  }
-  affine_.Scale(figure_, value, kX);
-}
+void ScaleStrategy::ScalePlusX() { affine_.Scale(figure_, 1 + value_, kX); }
+void ScaleStrategy::ScaleMinusX() { affine_.Scale(figure_, 1 - value_, kX); }
 
-void ScaleStrategy::ScalePlusY() {
-  double value = 1 + value_;
-  affine_.Scale(figure_, value, kY);
-}
-void ScaleStrategy::ScaleMinusY() {
-  double value = 1 - value_;
-  if (value == 0) {
-    value = 0.1;
-  }
-  affine_.Scale(figure_, value, kY);
-}
+void ScaleStrategy::ScalePlusY() { affine_.Scale(figure_, 1 + value_, kY); }
+void ScaleStrategy::ScaleMinusY() { affine_.Scale(figure_, 1 - value_, kY); }
 
-void ScaleStrategy::ScalePlusZ() { affine_.Scale(figure_, (1 + value_), kZ); }
-void ScaleStrategy::ScaleMinusZ() {
-  double value = 1 - value_;
-  if (value == 0) {
-    value = 0.1;
-  }
-  affine_.Scale(figure_, value, kZ);
-}
-void ScaleStrategy::ScaleMinusAll() {
-  double value = 1 - value_;
-  if (value == 0) {
-    value = 0.1;
-  }
+void ScaleStrategy::ScalePlusZ() { affine_.Scale(figure_, 1 + value_, kZ); }
+void ScaleStrategy::ScaleMinusZ() { affine_.Scale(figure_, 1 - value_, kZ); }
+
+void ScaleStrategy::ScaleAll() {
+  double value = 1 + value_ / 940.0;
   affine_.Scale(figure_, value, kAll);
 }
 

@@ -24,7 +24,7 @@ void Facade::Transform(double angle, Operation role) {
   invoker_.Execute(new RotateCommand(strategies_[kRotateStrgy]), role, angle);
 }
 void Facade::Scale(double scale, Operation role) {
-  invoker_.Execute(new RotateCommand(strategies_[kRotateStrgy]), role, scale);
+  invoker_.Execute(new ScaleCommand(strategies_[kScaleStrgy]), role, scale);
 }
 
 // Figure

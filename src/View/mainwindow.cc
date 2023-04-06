@@ -3,6 +3,7 @@
 namespace s21 {
 MainWindow::MainWindow(QWidget* parent)
     : QOpenGLWidget(parent), ui_(new Ui::MainWindow) {
+  value_ = 0.0;
   xRot_ = yRot_ = zRot_ = 0.0;
   lastPosX_ = lastPosY_ = 0.0;
   numberFps_ = 0;
@@ -17,7 +18,6 @@ MainWindow::MainWindow(QWidget* parent)
 MainWindow::~MainWindow() {
   delete gifTmr_;
   controller_.Remove();
-
   delete ui_;
 }
 
@@ -161,8 +161,7 @@ void MainWindow::on_spinBox_edges_size_valueChanged() { update(); }
 void MainWindow::on_pushButton_save_settings_clicked() { SaveSettings(); }
 
 void MainWindow::wheelEvent(QWheelEvent* event) {
-  double value = 1 + event->angleDelta().y() / 940.0;
-  controller_.Scale(value, kScaleAll);
+  controller_.Scale(event->angleDelta().y(), kScaleAll);
   update();
 }
 
@@ -213,27 +212,27 @@ void MainWindow::on_horizontalScrollBar_vertexes_B_valueChanged(int value) {
 
 // Scale
 void MainWindow::on_pushButton_sc_x_plus_clicked() {
-  controller_.Transform(value_, kScalePlusX);
+  controller_.Scale(ui_->doubleSpinBox_sc_value->value(), kScalePlusX);
   update();
 }
 void MainWindow::on_pushButton_sc_y_plus_clicked() {
-  controller_.Transform(value_, kScalePlusY);
+  controller_.Scale(ui_->doubleSpinBox_sc_value->value(), kScalePlusY);
   update();
 }
 void MainWindow::on_pushButton_sc_z_plus_clicked() {
-  controller_.Transform(value_, kScalePlusZ);
+  controller_.Scale(ui_->doubleSpinBox_sc_value->value(), kScalePlusZ);
   update();
 }
 void MainWindow::on_pushButton_sc_x_minus_clicked() {
-  controller_.Transform(value_, kScaleMinusX);
+  controller_.Scale(ui_->doubleSpinBox_sc_value->value(), kScaleMinusX);
   update();
 }
 void MainWindow::on_pushButton_sc_y_minus_clicked() {
-  controller_.Transform(value_, kScaleMinusY);
+  controller_.Scale(ui_->doubleSpinBox_sc_value->value(), kScaleMinusY);
   update();
 }
 void MainWindow::on_pushButton_sc_z_minus_clicked() {
-  controller_.Transform(value_, kScaleMinusZ);
+  controller_.Scale(ui_->doubleSpinBox_sc_value->value(), kScaleMinusZ);
   update();
 }
 

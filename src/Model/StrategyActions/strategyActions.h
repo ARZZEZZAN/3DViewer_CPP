@@ -32,13 +32,13 @@ class Strategy {
 
 class RotateStrategy : public Strategy {
  public:
-  RotateStrategy(Figure figure, Affine affine);  // TODO mb change
+  RotateStrategy(Figure& figure, Affine& affine);  // TODO mb change
   void Execute(Operation role, double value) override;
 
  private:
-  int value_;
-  Figure figure_;
-  Affine affine_;
+  double value_;
+  Figure& figure_;
+  Affine& affine_;  // TODO delete
   void RotateXSlider();
   void RotateYSlider();
   void RotateZSlider();
@@ -46,13 +46,13 @@ class RotateStrategy : public Strategy {
 
 class MoveStrategy : public Strategy {
  public:
-  MoveStrategy(Figure figure, Affine affine);
+  MoveStrategy(Figure& figure, Affine& affine);
   void Execute(Operation role, double value) override;
 
  private:
-  int value_;
-  Figure figure_;
-  Affine affine_;
+  double value_;
+  Figure& figure_;
+  Affine& affine_;  // TODO delete
   void MoveXPlus();
   void MoveXMinus();
   void MoveYPlus();
@@ -63,20 +63,20 @@ class MoveStrategy : public Strategy {
 
 class ScaleStrategy : public Strategy {
  public:
-  ScaleStrategy(Figure figure, Affine affine);
+  ScaleStrategy(Figure& figure, Affine& affine);
   void Execute(Operation role, double value) override;
 
  private:
-  int value_;
-  Figure figure_;
-  Affine affine_;
+  double value_;
+  Figure& figure_;
+  Affine& affine_;  // TODO delete
   void ScalePlusX();
   void ScaleMinusX();
   void ScalePlusY();
   void ScaleMinusY();
   void ScalePlusZ();
   void ScaleMinusZ();
-  void ScaleMinusAll();
+  void ScaleAll();
 };
 }  // namespace s21
 
