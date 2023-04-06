@@ -4,6 +4,7 @@
 #include <cmath>
 
 #include "../Figure/figure.h"
+
 typedef enum coordinate_t { kX = 0, kY, kZ, kAll } coordinate_t;
 
 namespace s21 {

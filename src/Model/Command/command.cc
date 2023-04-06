@@ -27,5 +27,4 @@ ScaleCommand::ScaleCommand(Strategy* strategy) { strategy_ = strategy; }
 void ScaleCommand::Execute(Operation role, double value) {
   strategy_->Execute(role, value);
 }
-
 }  // namespace s21

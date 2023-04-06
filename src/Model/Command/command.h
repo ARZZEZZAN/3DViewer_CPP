@@ -6,7 +6,7 @@
 namespace s21 {
 class Command {
  public:
-  virtual ~Command() {}
+  virtual ~Command() = default;
   virtual void Execute(Operation role, double value) = 0;
 
  protected:

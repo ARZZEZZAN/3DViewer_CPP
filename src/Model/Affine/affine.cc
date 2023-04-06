@@ -45,5 +45,4 @@ void Affine::Scale(Figure &figure, double scale, int coordinate) {
   }
   figure.setVertexes(tmp);
 }
-
 }  // namespace s21
